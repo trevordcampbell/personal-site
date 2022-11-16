@@ -1,6 +1,13 @@
 function Header() {
   return (
-    <div>Header</div>
+    <header>
+      <div>
+
+      </div>
+      <div>
+        
+      </div>
+    </header>
   )
 }
 

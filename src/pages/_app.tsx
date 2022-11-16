@@ -1,8 +1,32 @@
 import '../styles/globals.css'
-import type { AppProps } from 'next/app'
+import { useEffect, useRef } from 'react'
 
-function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+import { Header } from '@/components/HeaderOriginal'
+import { Footer } from '@/components/examples/Footer'
+import 'focus-visible'
+
+function usePrevious(value: any) {
+  let ref = useRef()
+
+  useEffect(() => {
+    ref.current = value
+  }, [value])
+
+  return ref.current
 }
 
-export default MyApp
+export default function App({ Component, pageProps, router }: {Component: any, pageProps: any, router: any}) {
+  let previousPathname = usePrevious(router.pathname)
+
+  return (
+    <>
+      <div className="bg-white dark:bg-zinc-900">
+        <Header />
+        <main>
+          <Component previousPathname={previousPathname} {...pageProps} />
+        </main>
+        <Footer />
+      </div>
+    </>
+  )
+}
