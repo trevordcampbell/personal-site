@@ -248,7 +248,7 @@ function Avatar({ large = false, className, ...props }) {
 }
 
 export function Header() {
-  let isHomePage = useRouter().pathname === '/test'
+  let isHomePage = useRouter().pathname === '/home'
 
   let headerRef = useRef()
   let avatarRef = useRef()
@@ -336,7 +336,7 @@ export function Header() {
 
     function updateStyles() {
       updateHeaderStyles()
-      //updateAvatarStyles()
+      updateAvatarStyles()
       isInitial.current = false
     }
 
