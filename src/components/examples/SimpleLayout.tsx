@@ -1,6 +1,6 @@
-import { Container } from '@/components/Container'
+import { Container } from '@/components/examples/Container'
 
-export function SimpleLayout({ title, intro, children }) {
+export function SimpleLayout({ title, intro, children }: {title:string, intro: string, children?: any}) {
   return (
     <Container className="mt-16 sm:mt-32">
       <header className="max-w-2xl">
