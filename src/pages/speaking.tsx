@@ -1,8 +1,8 @@
 import Head from 'next/head'
 
-import { Card } from '@/components/examples/Card'
-import { Section } from '@/components/examples/Section'
-import { SimpleLayout } from '@/components/examples/SimpleLayout'
+import { Card } from '@/components/Card'
+import { Section } from '@/components/Section'
+import { SimpleLayout } from '@/components/SimpleLayout'
 
 function SpeakingSection({ children, ...props }: {children: any, title: any}) {
   return (

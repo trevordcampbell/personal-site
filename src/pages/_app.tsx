@@ -2,7 +2,7 @@ import '../styles/globals.css'
 import { useEffect, useRef } from 'react'
 
 import { Header } from '@/components/HeaderOriginal'
-import { Footer } from '@/components/examples/Footer'
+import { Footer } from '@/components/Footer'
 import 'focus-visible'
 
 function usePrevious(value: any) {

@@ -81,11 +81,11 @@ function BlurImage({ image }: { image: Image }) {
   const [isLoading, setLoading] = useState(true)
 
   return (
-    <a href={image.href} className="group">
+    <a href={image.href+'?auto=format'} className="group">
       <div className="relative aspect-w-1 aspect-h-1 overflow-hidden rounded-lg xl:aspect-w-7 xl:aspect-h-8">
         <Image
           alt=""
-          src={image.imageSrc}
+          src={image.imageSrc+'?auto=format'}
           // width="0"
           // height="0"
           // sizes="100vw"

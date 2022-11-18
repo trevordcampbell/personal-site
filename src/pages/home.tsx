@@ -3,15 +3,15 @@ import Head from 'next/head'
 import Link from 'next/link'
 import clsx from 'clsx'
 
-import { Button } from '@/components/examples/Button'
-import { Card } from '@/components/examples/Card'
-import { Container } from '@/components/examples/Container'
+import { Button } from '@/components/Button'
+import { Card } from '@/components//Card'
+import { Container } from '@/components/Container'
 import {
   TwitterIcon,
   InstagramIcon,
   GitHubIcon,
   LinkedInIcon,
-} from '@/components/examples/SocialIcons'
+} from '@/components/SocialIcons'
 import image1 from '@/images/photos/image-1.jpg'
 import image2 from '@/images/photos/image-2.jpg'
 import image3 from '@/images/photos/image-3.jpg'
@@ -21,9 +21,9 @@ import logoAirbnb from '@/images/logos/airbnb.svg'
 import logoFacebook from '@/images/logos/facebook.svg'
 import logoPlanetaria from '@/images/logos/planetaria.svg'
 import logoStarbucks from '@/images/logos/starbucks.svg'
-// import { generateRssFeed } from '@/lib/generateRssFeed'
-// import { getAllArticles } from '@/lib/getAllArticles'
-// import { formatDate } from '@/lib/formatDate'
+import { generateRssFeed } from '@/lib/generateRssFeed'
+import { getAllArticles } from '@/lib/getAllArticles'
+import { formatDate } from '@/lib/formatDate'
 
 function MailIcon(props: any) {
   return (
@@ -84,20 +84,20 @@ function ArrowDownIcon(props: any) {
   )
 }
 
-// function Article({ article }) {
-//   return (
-//     <Card as="article">
-//       <Card.Title href={`/articles/${article.slug}`}>
-//         {article.title}
-//       </Card.Title>
-//       <Card.Eyebrow as="time" dateTime={article.date} decorate>
-//         {formatDate(article.date)}
-//       </Card.Eyebrow>
-//       <Card.Description>{article.description}</Card.Description>
-//       <Card.Cta>Read article</Card.Cta>
-//     </Card>
-//   )
-// }
+function Article({ article }: {article: any}) {
+  return (
+    <Card className="" as="article">
+      <Card.Title href={`/articles/${article.slug}`}>
+        {article.title}
+      </Card.Title>
+      <Card.Eyebrow as="time" dateTime={article.date} decorate>
+        {formatDate(article.date)}
+      </Card.Eyebrow>
+      <Card.Description>{article.description}</Card.Description>
+      <Card.Cta>Read article</Card.Cta>
+    </Card>
+  )
+}
 
 function SocialLink({ icon: Icon, ...props }: {icon: any}) {
   return (
@@ -246,7 +246,7 @@ function Photos() {
   )
 }
 
-export default function Home({ }) {
+export default function Home({articles}: {articles: any}) {
   // Include {articles} when complete ...
   return (
     <>
@@ -258,6 +258,7 @@ export default function Home({ }) {
           name="description"
           content="I’m Spencer, a software designer and entrepreneur based in New York City. I’m the founder and CEO of Planetaria, where we develop technologies that empower regular people to explore space on their own terms."
         />
+        <link rel="icon" href="/favicon.ico" />
       </Head>
       <Container className="mt-8">
         <div className="max-w-2xl">
@@ -295,11 +296,11 @@ export default function Home({ }) {
       <Photos />
       <Container className="mt-24 md:mt-28">
         <div className="mx-auto grid max-w-xl grid-cols-1 gap-y-20 lg:max-w-none lg:grid-cols-2">
-          {/* <div className="flex flex-col gap-16">
-            {articles.map((article) => (
+          <div className="flex flex-col gap-16">
+            {articles.map((article: any) => (
               <Article key={article.slug} article={article} />
             ))}
-          </div> */}
+          </div>
           <div className="space-y-10 lg:pl-16 xl:pl-24">
             <Newsletter />
             <Resume />
@@ -310,16 +311,16 @@ export default function Home({ }) {
   )
 }
 
-// export async function getStaticProps() {
-//   if (process.env.NODE_ENV === 'production') {
-//     await generateRssFeed()
-//   }
+export async function getStaticProps() {
+  if (process.env.NODE_ENV === 'production') {
+    await generateRssFeed()
+  }
 
-//   return {
-//     props: {
-//       articles: (await getAllArticles())
-//         .slice(0, 4)
-//         .map(({ component, ...meta }) => meta),
-//     },
-//   }
-// }
+  return {
+    props: {
+      articles: (await getAllArticles())
+        .slice(0, 4)
+        .map(({ component, ...meta }) => meta),
+    },
+  }
+}

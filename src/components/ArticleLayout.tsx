@@ -5,7 +5,7 @@ import { Container } from '@/components/Container'
 import { formatDate } from '@/lib/formatDate'
 import { Prose } from '@/components/Prose'
 
-function ArrowLeftIcon(props) {
+function ArrowLeftIcon(props: any) {
   return (
     <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" {...props}>
       <path
