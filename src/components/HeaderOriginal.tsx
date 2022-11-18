@@ -248,7 +248,7 @@ function Avatar({ large = false, className, ...props }) {
 }
 
 export function Header() {
-  let isHomePage = useRouter().pathname === '/home'
+  let isHomePage = useRouter().pathname === '/'
 
   let headerRef = useRef()
   let avatarRef = useRef()
