@@ -2,7 +2,7 @@ import { forwardRef } from 'react'
 import clsx from 'clsx'
 
 const OuterContainer = forwardRef(function OuterContainer(
-  { className, children, ...props }: {className: string, children: JSX.Element},
+  { className, children, ...props }: {className?: string, children: JSX.Element},
   ref
 ) {
   return (
@@ -13,7 +13,7 @@ const OuterContainer = forwardRef(function OuterContainer(
 })
 
 const InnerContainer = forwardRef(function InnerContainer(
-  { className, children, ...props }: {className: string, children: JSX.Element},
+  { className, children, ...props }: {className?: string, children: JSX.Element},
   ref
 ) {
   return (
@@ -28,15 +28,24 @@ const InnerContainer = forwardRef(function InnerContainer(
 })
 
 export const Container = forwardRef(function Container(
-  {children, ...props}: {className?: string, children: any},
+  
+  {children, ...props}: {className?: string, children: any, style?: any},
   ref
 ) {
   return (
-    <OuterContainer className="" ref={ref} {...props}>
-      <InnerContainer className="">{children}</InnerContainer>
+    <OuterContainer ref={ref} {...props}>
+      <InnerContainer>{children}</InnerContainer>
     </OuterContainer>
   )
 })
+
+// interface IContainer
+//   extends React.ForwardRefExoticComponent<
+//     ContainerProps & React.RefAttributes<HTMLDivElement>
+//   > {
+//   Outer: typeof Container;
+//   Inner: typeof Container;
+// }
 
 Container.Outer = OuterContainer
 Container.Inner = InnerContainer

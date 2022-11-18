@@ -99,9 +99,9 @@ function Article({ article }: {article: any}) {
   )
 }
 
-function SocialLink({ icon: Icon, ...props }: {icon: any}) {
+function SocialLink({ icon: Icon, ...props }: {icon: any, href?: any}) {
   return (
-    <Link className="group -m-1 p-1" {...props}>
+    <Link href={props.href} className="group -m-1 p-1" {...props}>
       <Icon className="h-6 w-6 fill-zinc-500 transition group-hover:fill-zinc-600 dark:fill-zinc-400 dark:group-hover:fill-zinc-300" />
     </Link>
   )
@@ -178,7 +178,7 @@ function Resume() {
         <span className="ml-3">Work</span>
       </h2>
       <ol className="mt-6 space-y-4">
-        {resume.map((role, roleIndex) => (
+        {resume.map((role: any, roleIndex: any) => (
           <li key={roleIndex} className="flex gap-4">
             <div className="relative mt-1 flex h-10 w-10 flex-none items-center justify-center rounded-full shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
               <Image src={role.logo} alt="" className="h-7 w-7" unoptimized />

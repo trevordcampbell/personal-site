@@ -1,7 +1,6 @@
 import { Fragment, useState } from 'react'
-import { Dialog, RadioGroup, Transition } from '@headlessui/react'
+import { Dialog, Transition } from '@headlessui/react'
 import { ShoppingBagIcon, XMarkIcon } from '@heroicons/react/24/outline'
-import { StarIcon } from '@heroicons/react/20/solid'
 
 // const product = {
 //   name: 'Zip Tote Basket',

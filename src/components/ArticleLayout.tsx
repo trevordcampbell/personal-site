@@ -23,7 +23,7 @@ export function ArticleLayout({
   meta,
   isRssFeed = false,
   previousPathname,
-}) {
+}: {children: any, isRssFeed: boolean, meta: any, previousPathname: any}) {
   let router = useRouter()
 
   if (isRssFeed) {
