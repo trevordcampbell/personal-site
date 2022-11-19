@@ -1,7 +1,6 @@
 import Image from 'next/image'
 import { useState } from 'react'
 import { supabase } from '@/utils/supabase'
-import ImageModal from '@/components/ImageModal'
 
 export async function getStaticProps() {
  const { data } = await supabase.from('images').select().eq('show', 'true').order('id')
@@ -57,8 +56,6 @@ export default function Gallery({ images }: { images: Image[] }) {
             </div>
         </div>
       </section>
-
-      <ImageModal />
 
       <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
 
