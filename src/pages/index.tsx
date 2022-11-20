@@ -266,9 +266,14 @@ export default function Home({articles}: {articles: any}) {
             {/* <span className='mr-4'>Filmmaker 🎬</span> <span className='mr-4'>Tinkerer 🛠</span> <span>and real-life Indiana Jones 🤠</span> */}
             Filmmaker 🎬 Tinkerer 🛠 and real-life Indiana Jones 🤠
           </h1>
-          <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
-            I’m Trevor, a <span className="italic">dude</span> based in the <span className="underline decoration-wavy underline-offset-1">Greater Boston Area</span>. I spend my time creating short films, exploring new hobbies, and thinking of outrageously dumb business ideas.
-          </p>
+          <div className="mt-6 text-base text-zinc-600 dark:text-zinc-400 space-y-6">
+            <p className="">
+              I’m Trevor, a <span className="italic">dude</span> based in the <span className="underline decoration-wavy underline-offset-1">Greater Boston Area</span>. I spend my time creating short films, exploring new hobbies, and thinking of outrageously dumb business ideas.
+            </p>
+            <p className="">
+              Currently, you can find me wandering around Asia in search of rough gems and adventure!
+            </p>
+          </div>
           <div className="mt-6 flex gap-6">
             <SocialLink
               href="https://twitter.com"
@@ -297,6 +302,9 @@ export default function Home({articles}: {articles: any}) {
       <Container className="mt-24 md:mt-28">
         <div className="mx-auto grid max-w-xl grid-cols-1 gap-y-20 lg:max-w-none lg:grid-cols-2">
           <div className="flex flex-col gap-16">
+            <div className="border-b-2 border-zinc-200 dark:border-zinc-700 pb-5">
+              <h3 className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">📚 My Latest Writings...</h3>
+            </div>
             {articles.map((article: any) => (
               <Article key={article.slug} article={article} />
             ))}

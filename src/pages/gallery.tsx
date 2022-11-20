@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Head from 'next/head'
 import { useState } from 'react'
 import { supabase } from '@/utils/supabase'
 
@@ -33,6 +34,13 @@ export default function Gallery({ images }: { images: Image[] }) {
   const [isLoading, setLoading] = useState(true)
   return (
     <>
+      <Head>
+        <title>Gallery - Trevor Campbell</title>
+        <meta
+          name="description"
+          content="Some of the Photos and Videos from my travels!"
+        />
+      </Head>
       <section className="relative -top-16 bg-gray-900 py-16 sm:py-16 lg:py-20 xl:py-32">
         <div className="absolute inset-0">
             <Image 
@@ -40,19 +48,19 @@ export default function Gallery({ images }: { images: Image[] }) {
               height="0"
               sizes="100vw"
               className={classNames(
-                'object-cover w-full h-full transition-all duration-500 ease-in-out',
+                'object-cover sm:object-right w-full h-full transition-all duration-500 ease-in-out',
                 isLoading
                   ? 'scale-110 blur-2xl grayscale'
                   : 'scale-100 blur-0 grayscale-0'
               )}
               onLoadingComplete={() => setLoading(false)}
-              src="https://trevordcampbell.imgix.net/singapore-2022/Still+8.png?auto=format" alt=""
+              src="https://trevordcampbell.imgix.net/pakistan-2022/Still+27.png?auto=format" alt=""
             />
         </div>
-        <div className="relative px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
-            <div className="text-center">
-                <p className="text-3xl sm:text-5xl lg:text-7xl">📷</p>
-                <h1 className="text-2xl font-bold text-white dark:text-zinc-100 sm:text-3xl lg:text-5xl">Photo Gallery</h1>
+        <div className="relative pt-6 px-4 mx-auto sm:px-6 lg:pt-0 lg:px-8 max-w-7xl">
+            <div className="text-center font-bold tracking-tight text-white dark:text-zinc-100">
+                <p className="text-5xl sm:text-7xl">📷</p>
+                <h1 className="text-4xl sm:text-5xl">Photo Gallery</h1>
             </div>
         </div>
       </section>

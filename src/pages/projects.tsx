@@ -8,6 +8,7 @@ import logoCosmos from '@/images/logos/cosmos.svg'
 import logoHelioStream from '@/images/logos/helio-stream.svg'
 import logoOpenShuttle from '@/images/logos/open-shuttle.svg'
 import logoPlanetaria from '@/images/logos/planetaria.svg'
+import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
 
 const projects = [
   {
@@ -62,17 +63,26 @@ export default function Projects() {
   return (
     <>
       <Head>
-        <title>Projects - Spencer Sharp</title>
+        <title>Projects - Trevor Campbell</title>
         <meta
           name="description"
           content="Things I’ve made trying to put my dent in the universe."
         />
       </Head>
       <SimpleLayout
-        title="Things I’ve made trying to put my dent in the universe."
-        intro="I’ve worked on tons of little projects over the years but these are the ones that I’m most proud of. Many of them are open-source, so if you see something that piques your interest, check out the code and contribute if you have ideas for how it can be improved."
+        title="Things I’ve done trying to put my dent in the universe."
+        intro="I’ve worked on tons of little projects over the years but these are the ones that I’m most proud of. Many of them are pretty funky, so if you see something that piques your interest, feel free to reach out and let me know! Or give one of them a try for yourself!"
       >
-        <ul
+        <div
+          className="relative block w-full rounded-lg border-4 border-dashed bg-yellow-400/10 border-yellow-400/50 p-12 text-center focus:outline-none"
+        >
+          <div className="text-5xl sm:text-7xl mx-auto h-12 w-12">
+            🛠
+          </div>
+          <span className="mt-8 block text-2xl sm:text-xl leading-7 font-semibold tracking-tight text-zinc-900 dark:text-yellow-500">Currently Under Construction!</span>
+          <p className="mt-6 block text-sm font-medium text-zinc-500 dark:text-zinc-400">Please excuse the mess while we build more stuff...</p>
+        </div>
+        {/* <ul
           role="list"
           className="grid grid-cols-1 gap-x-12 gap-y-16 sm:grid-cols-2 lg:grid-cols-3"
         >
@@ -96,7 +106,7 @@ export default function Projects() {
               </p>
             </Card>
           ))}
-        </ul>
+        </ul> */}
       </SimpleLayout>
     </>
   )

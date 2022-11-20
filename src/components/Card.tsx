@@ -27,7 +27,7 @@ export function Card({ as: Component = 'div', className, children }: {as?: any, 
 Card.Link = function CardLink({ children, ...props }: {href?: any, children: any}) {
   return (
     <>
-      <div className="absolute -inset-y-6 -inset-x-4 z-0 scale-95 bg-zinc-50 opacity-0 transition group-hover:scale-100 group-hover:opacity-100 dark:bg-zinc-800/50 sm:-inset-x-6 sm:rounded-2xl" />
+      <div className="absolute -inset-y-6 -inset-x-4 z-0 scale-95 bg-zinc-50 opacity-0 transition group-hover:scale-100 group-hover:opacity-100 dark:bg-zinc-800/50 sm:-inset-x-6 sm:rounded-2xl group-hover:ring-2 group-hover:ring-teal-500/30" />
       <Link href={props.href} {...props}>
         <span className="absolute -inset-y-6 -inset-x-4 z-20 sm:-inset-x-6 sm:rounded-2xl" />
         <span className="relative z-10">{children}</span>
@@ -38,7 +38,7 @@ Card.Link = function CardLink({ children, ...props }: {href?: any, children: any
 
 Card.Title = function CardTitle({ as: Component = 'h2', href, children }: {as?: any, href: any, children: any}) {
   return (
-    <Component className="text-base font-semibold tracking-tight text-zinc-800 dark:text-zinc-100">
+    <Component className="text-lg font-semibold tracking-tight text-zinc-800 dark:text-zinc-100">
       {href ? <Card.Link href={href}>{children}</Card.Link> : children}
     </Component>
   )
@@ -56,7 +56,7 @@ Card.Cta = function CardCta({ children }: {children: any}) {
   return (
     <div
       aria-hidden="true"
-      className="relative z-10 mt-4 flex items-center text-sm font-medium text-teal-500"
+      className="relative z-10 mt-4 flex items-center text-sm font-medium text-teal-500 group-hover:underline group-hover:underline-offset-2 group-hover:decoration-wavy"
     >
       {children}
       <ChevronRightIcon className="ml-1 h-4 w-4 stroke-current" />
