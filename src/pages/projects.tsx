@@ -70,7 +70,7 @@ export default function Projects() {
         />
       </Head>
       <SimpleLayout
-        title="Things I’ve done trying to put my dent in the universe."
+        title="Things I’ve done trying to put my dent in the universe. 🃏"
         intro="I’ve worked on tons of little projects over the years but these are the ones that I’m most proud of. Many of them are pretty funky, so if you see something that piques your interest, feel free to reach out and let me know! Or give one of them a try for yourself!"
       >
         <div
@@ -78,6 +78,9 @@ export default function Projects() {
         >
           <div className="text-5xl sm:text-7xl mx-auto h-12 w-12">
             🛠
+          </div>
+          <div>
+
           </div>
           <span className="mt-8 block text-2xl sm:text-xl leading-7 font-semibold tracking-tight text-zinc-900 dark:text-yellow-500">Currently Under Construction!</span>
           <p className="mt-6 block text-sm font-medium text-zinc-500 dark:text-zinc-400">Please excuse the mess while we build more stuff...</p>

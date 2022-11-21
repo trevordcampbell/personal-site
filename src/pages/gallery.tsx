@@ -132,7 +132,7 @@ function BlurImage({ image }: { image: Image }) {
       <div className="relative aspect-w-1 aspect-h-1 overflow-hidden rounded-lg xl:aspect-w-7 xl:aspect-h-8">
         <Image
           alt={image.description}
-          src={image.imageSrc+'?auto=compress?auto=format'}
+          src={image.imageSrc+'?auto=format'}
           // width="0"
           // height="0"
           // sizes="100vw"

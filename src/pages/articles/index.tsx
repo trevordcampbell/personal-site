@@ -45,7 +45,7 @@ export default function ArticlesIndex({ articles }: {articles: any}) {
         />
       </Head>
       <SimpleLayout
-        title="Writing on whatever ideas have infected my mind."
+        title="Writing on whatever ideas have infected my mind... 🧠"
         intro="All of my long-form thoughts on life, work, tinkering projects, product design, and more collected in chronological order."
       >
         <div className="md:border-l md:border-zinc-100 md:pl-6 md:dark:border-zinc-700/40">

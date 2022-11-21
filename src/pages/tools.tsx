@@ -36,11 +36,11 @@ export default function Tools() {
         />
       </Head>
       <SimpleLayout
-        title="Tools and equipment I use, gadgets + software I love, and other things I recommend."
+        title="Tools and equipment I use, gadgets + software I love, and other things I recommend. 💪"
         intro="I get asked a lot about the things I use in filmmaking, doing web development, writing, or other stuff I buy to fool myself into thinking I’m being productive when I’m really just procrastinating. Here’s a big list of all of my favorite stuff:"
       >
         <div className="space-y-20">
-          <ToolsSection title="Workstation">
+          <ToolsSection title="💼 Workstation">
             <Tool title="13” MacBook Air, 4GB RAM (2015)">
               This thing is a tank. I don't know what Apple actually put inside this machine to make it magic, but somehow this rinky-dink little laptop can handle anything I can throw at it (even outside of it's performance specs). I'm talking Adobe Photoshop, Illustrator, a fuckton of Chrome tabs. Thing just won't quit!
             </Tool>
@@ -51,7 +51,7 @@ export default function Tools() {
               These widescreen displays are *beautiful*, and offer true 4K viewing. The screen has a nice matte finish, which helps prevent room-glare. When you’re working with high-quality photo and videos, graphic design, and other visually-important tasks, every pixel you can get counts.
             </Tool>
           </ToolsSection>
-          <ToolsSection title="Filmmaking Equipment">
+          <ToolsSection title="🎬 Filmmaking Equipment">
             <Tool title="Sony FX3 Cinema Camera">
               The smallest and lightest camera available in Sony's Cinema line. This camera can shoot 4K, 60FPS, 10-Bit 4:2:2 Colorspace, and Sony's powerful S-Log3.cine picture profile. Also allows for shooting in CineEI mode. It produces a really gorgeous and stunning picture that is easy to edit.
             </Tool>
@@ -71,7 +71,7 @@ export default function Tools() {
               When shooting in CineEI mode, a Variable Neutral Density filter (VND) is essential for getting the correct exposure. One of the big challenges of shooting CineEI in the "real" world is that you often have zero control over the lighting in a space. This VND and mattebox kit makes it fast and easy to correctly expose your picture according to local lighting conditions.
             </Tool>
           </ToolsSection>
-          <ToolsSection title="Photo Editing + Video Production + Animation">
+          <ToolsSection title="🖼 Photo Editing + Video Production + Animation">
             <Tool title="Adobe Photoshop">
               We started using Figma as just a design tool but now it’s become
               our virtual whiteboard for the entire company. Never would have
@@ -84,7 +84,7 @@ export default function Tools() {
               The industry standard for Animation work, but it's truly a heinous tool. If you have to use it, question whether or not animation is even needed in the first place...
             </Tool>
           </ToolsSection>
-          <ToolsSection title="Development tools">
+          <ToolsSection title="🤖 Development tools">
             <Tool title="VS Code">
               Let's be real, VS Code is like the Toyota Camry of the development world. She's cheap (free), efficient, and sexy as hell. Not to mention highly customizable! No other way to say it, VS Code is the best in the game.
             </Tool>
@@ -99,7 +99,7 @@ export default function Tools() {
               Development is frustrating as hell. Ever worked with Typescript before? You're gonna need a punching bag too :'(
             </Tool>
           </ToolsSection>
-          <ToolsSection title="Web Dev Tech Stack">
+          <ToolsSection title="🕸 Web Dev Tech Stack">
             <Tool title="Next.js">
               Next.js makes it stupidly easy to make highly performant websites and web apps with lots of features out of the box. My favorite is the simple Server-Side Rendering (SSR), which makes delivering high-quality images and videos without huge load times a piece of cake!
             </Tool>
@@ -110,7 +110,7 @@ export default function Tools() {
               Love it or hate it, Tailwind CSS is what I use! I have never found an easier way to make beautiful web designs at the speed of thought. It's like writing CSS on meth.
             </Tool>
           </ToolsSection>
-          <ToolsSection title="Design">
+          <ToolsSection title="🎨 Design">
             <Tool title="Figma">
               Figma is the best tool for the design stages of building a website, an application, or just whiteboarding a new concept. It's like if a virtual whiteboard and a software design tool had a baby.
             </Tool>
@@ -121,7 +121,7 @@ export default function Tools() {
               This is a great tool for designing print items. Need to make a beautiful whitepaper, a magazine, a flyer, an ebook? Indesign has your back!
             </Tool>
           </ToolsSection>
-          <ToolsSection title="Writing">
+          <ToolsSection title="✍️ Writing">
             <Tool title="Apple Notes">
               It’s not the newest kid on the block but it’s still the fastest way to jot something down and come back to it later.
             </Tool>

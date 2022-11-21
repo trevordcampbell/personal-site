@@ -4,7 +4,7 @@ import Link from 'next/link'
 import clsx from 'clsx'
 
 import { Button } from '@/components/Button'
-import { Card } from '@/components//Card'
+import { Card } from '@/components/Card'
 import { Container } from '@/components/Container'
 import {
   TwitterIcon,
@@ -17,13 +17,11 @@ import image2 from '@/images/photos/image-2.jpg'
 import image3 from '@/images/photos/image-3.jpg'
 import image4 from '@/images/photos/image-4.jpg'
 import image5 from '@/images/photos/image-5.jpg'
-import logoAirbnb from '@/images/logos/airbnb.svg'
-import logoFacebook from '@/images/logos/facebook.svg'
 import logoPlanetaria from '@/images/logos/planetaria.svg'
-import logoStarbucks from '@/images/logos/starbucks.svg'
 import { generateRssFeed } from '@/lib/generateRssFeed'
 import { getAllArticles } from '@/lib/getAllArticles'
 import { formatDate } from '@/lib/formatDate'
+import { Funderline } from '@/components/Funderline'
 
 function MailIcon(props: any) {
   return (
@@ -139,35 +137,35 @@ function Newsletter() {
 function Resume() {
   let resume = [
     {
-      company: 'Planetaria',
-      title: 'CEO',
+      company: 'Temporary Retirement',
+      title: 'Chief Retiree',
       logo: logoPlanetaria,
-      start: '2019',
+      start: '2022',
       end: {
         label: 'Present',
         dateTime: new Date().getFullYear(),
       },
     },
     {
-      company: 'Airbnb',
-      title: 'Product Designer',
-      logo: logoAirbnb,
-      start: '2014',
+      company: 'Vincere Health',
+      title: 'Head of Product, Founding Team',
+      logo: logoPlanetaria,
+      start: '2019',
+      end: '2022',
+    },
+    {
+      company: 'Harvard Innovation Lab',
+      title: 'Advisor + Consultant',
+      logo: logoPlanetaria,
+      start: '2018',
       end: '2019',
     },
     {
-      company: 'Facebook',
-      title: 'iOS Software Engineer',
-      logo: logoFacebook,
-      start: '2011',
-      end: '2014',
-    },
-    {
-      company: 'Starbucks',
-      title: 'Shift Supervisor',
-      logo: logoStarbucks,
-      start: '2008',
-      end: '2011',
+      company: 'unCHAINed',
+      title: 'Co-Founder, Project Lead',
+      logo: logoPlanetaria,
+      start: '2018',
+      end: '2019',
     },
   ]
 
@@ -211,10 +209,10 @@ function Resume() {
           </li>
         ))}
       </ol>
-      <Button href="#" variant="secondary" className="group mt-6 w-full">
+      {/* <Button href="#" variant="secondary" className="group mt-6 w-full">
         Download CV
         <ArrowDownIcon className="h-4 w-4 stroke-zinc-400 transition group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50" />
-      </Button>
+      </Button> */}
     </div>
   )
 }
@@ -252,11 +250,11 @@ export default function Home({articles}: {articles: any}) {
     <>
       <Head>
         <title>
-          Trevor Campbell - Software designer, founder, and real-life Indiana Jones
+          Trevor Campbell - Filmmaker 🎬 Tinkerer 🛠 and real-life Indiana Jones 🤠
         </title>
         <meta
           name="description"
-          content="I’m Spencer, a software designer and entrepreneur based in New York City. I’m the founder and CEO of Planetaria, where we develop technologies that empower regular people to explore space on their own terms."
+          content="I’m Trevor, a dude based in the Greater Boston Area. I spend my time creating short films, exploring new hobbies, and thinking of outrageously dumb business ideas."
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -268,7 +266,7 @@ export default function Home({articles}: {articles: any}) {
           </h1>
           <div className="mt-6 text-base text-zinc-600 dark:text-zinc-400 space-y-6">
             <p className="">
-              I’m Trevor, a <span className="italic">dude</span> based in the <span className="underline decoration-wavy underline-offset-1">Greater Boston Area</span>. I spend my time creating short films, exploring new hobbies, and thinking of outrageously dumb business ideas.
+              I’m Trevor, a <span className="italic">dude</span> based in the <Funderline text="Greater Boston Area"/>. I spend my time creating short films, exploring new hobbies, and thinking of outrageously dumb business ideas.
             </p>
             <p className="">
               Currently, you can find me wandering around Asia in search of rough gems and adventure!
@@ -276,22 +274,22 @@ export default function Home({articles}: {articles: any}) {
           </div>
           <div className="mt-6 flex gap-6">
             <SocialLink
-              href="https://twitter.com"
+              href="https://twitter.com/TrevorCampbell_"
               aria-label="Follow on Twitter"
               icon={TwitterIcon}
             />
             <SocialLink
-              href="https://instagram.com"
+              href="https://www.instagram.com/trevor.d.campbell/"
               aria-label="Follow on Instagram"
               icon={InstagramIcon}
             />
             <SocialLink
-              href="https://github.com"
+              href="https://github.com/trevordcampbell"
               aria-label="Follow on GitHub"
               icon={GitHubIcon}
             />
             <SocialLink
-              href="https://linkedin.com"
+              href="https://www.linkedin.com/in/trevordcampbell/"
               aria-label="Follow on LinkedIn"
               icon={LinkedInIcon}
             />

@@ -10,7 +10,8 @@ import {
   GitHubIcon,
   LinkedInIcon,
 } from '@/components/SocialIcons'
-import portraitImage from '@/images/portrait.jpg'
+import portraitImage from '@/images/badheadshot.jpg'
+import { FunLink } from '@/components/FunLink'
 
 function SocialLink({ className, href, children, icon: Icon }: {className: string, href: string, children: any, icon: any}) {
   return (
@@ -56,39 +57,31 @@ export default function About() {
                 alt=""
                 sizes="(min-width: 1024px) 32rem, 20rem"
                 className="aspect-square rotate-3 rounded-2xl bg-zinc-100 object-cover dark:bg-zinc-800"
+                quality={100}
               />
             </div>
           </div>
           <div className="lg:order-first lg:row-span-2">
             <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
-              Hey! 👋 I’m Trevor Campbell. Welcome to my little kingdom in the cloud! ☁️ 🏰
+              Hey! 👋 I’m Trevor Campbell.
+            </h1>
+            <h1 className="mt-6 text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
+              Welcome to my little kingdom in the cloud! 🏰 ☁️
             </h1>
             <div className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
               <p>
-                I’ve loved making things for as long as I can remember, and
-                wrote my first program when I was 6 years old, just two weeks
-                after my mom brought home the brand new Macintosh LC 550 that I
-                taught myself to type on.
+                I’ve loved tinkering and making things for as long as I can remember, and
+                used to be a serious science dork back in the day. I'm still a dork now, just with many different flavors!
               </p>
               <p>
-                The only thing I loved more than computers as a kid was space.
-                When I was 8, I climbed the 40-foot oak tree at the back of our
-                yard while wearing my older sister’s motorcycle helmet, counted
-                down from three, and jumped — hoping the tree was tall enough
-                that with just a bit of momentum I’d be able to get to orbit.
+                Usually, I spend my time capturing video from my travels around the world and turning them into short films. When I'm not behind the camera, I'm exploring new hobbies, making things with my hands, and vomiting out <span className='italic'>very</span> poorly written code from my brain.
               </p>
               <p>
-                I spent the next few summers indoors working on a rocket design,
-                while I recovered from the multiple surgeries it took to fix my
-                badly broken legs. It took nine iterations, but when I was 15 I
-                sent my dad’s Blackberry into orbit and was able to transmit a
-                photo back down to our family computer from space.
+                If you'd like to explore around my cloud kingdom, feel free to check out my <FunLink href="/gallery" emoji="📷" text="Photo Gallery"></FunLink> or read about some of the wacky things I've been up to in my <FunLink href="/articles" emoji="📚" text="Articles + Other Writings"></FunLink> 
+                {/* <Link href="/gallery" className='font-medium hover:text-teal-500'><span>📷 </span><span className='underline underline-offset-2 decoration-wavy'>Photo and Video Gallery</span></Link> */}
               </p>
               <p>
-                Today, I’m the founder of Planetaria, where we’re working on
-                civilian space suits and manned shuttle kits you can assemble at
-                home so that the next generation of kids really <em>can</em>{' '}
-                make it to orbit — from the comfort of their own backyards.
+                Right now I'm on a temporary retirement from work to explore the other parts of life and enjoy some globetrotting travel. But in my previous life I was the Head of Product at Vincere Health
               </p>
             </div>
           </div>
