@@ -398,7 +398,7 @@ export function Header() {
             </Container>
           </>
         )}
-        <div
+        <EmptyBox
           ref={headerRef}
           className="top-0 z-10 h-16 pt-6"
           style={{ position: 'var(--header-position)' }}
@@ -426,7 +426,7 @@ export function Header() {
               </div>
             </div>
           </Container>
-        </div>
+        </EmptyBox>
       </header>
       {isHomePage && <div style={{ height: 'var(--content-offset)' }} />}
     </>
