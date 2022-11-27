@@ -5,6 +5,7 @@ import { Popover, Transition } from '@headlessui/react'
 import clsx from 'clsx'
 
 import { Container } from '@/components/Container'
+import { EmptyBox } from '@/components/EmptyBox'
 import avatarImage from '@/images/avatar.jpg'
 import React, { Fragment, useEffect, useRef } from 'react'
 
@@ -375,7 +376,7 @@ export function Header() {
               className="top-0 order-last -mb-3 pt-3"
               style={{ position: 'var(--header-position)' }}
             >
-              <div
+              <EmptyBox
                 className="top-[var(--avatar-top,theme(spacing.3))] w-full"
                 style={{ position: 'var(--header-inner-position)' }}
               >
@@ -393,7 +394,7 @@ export function Header() {
                     style={{ transform: 'var(--avatar-image-transform)' }}
                   />
                 </div>
-              </div>
+              </EmptyBox>
             </Container>
           </>
         )}
