@@ -1,4 +1,4 @@
-import { forwardRef } from 'react'
+import { forwardRef, ForwardRefExoticComponent } from 'react'
 import clsx from 'clsx'
 
 const OuterContainer = forwardRef(function OuterContainer(
@@ -27,25 +27,21 @@ const InnerContainer = forwardRef(function InnerContainer(
   )
 })
 
-export const Container = forwardRef(function Container(
+export const Container = Object.assign(
+  forwardRef(function Container(
   
-  {children, ...props}: {className?: string, children: any, style?: any},
-  ref
-) {
-  return (
-    <OuterContainer ref={ref} {...props}>
-      <InnerContainer>{children}</InnerContainer>
-    </OuterContainer>
-  )
-})
-
-// interface IContainer
-//   extends React.ForwardRefExoticComponent<
-//     ContainerProps & React.RefAttributes<HTMLDivElement>
-//   > {
-//   Outer: typeof Container;
-//   Inner: typeof Container;
-// }
-
-Container.Outer = OuterContainer
-Container.Inner = InnerContainer
+    {children, Outer, ...props}: {className?: string, children: any, style?: any, Outer?: any},
+    ref: any,
+    
+  ) {
+    return (
+      <OuterContainer ref={ref} {...props}>
+        <InnerContainer>{children}</InnerContainer>
+      </OuterContainer>
+    )
+  }),
+  {
+    Outer: OuterContainer,
+    Inner: InnerContainer
+  }
+)

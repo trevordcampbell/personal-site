@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+    <channel>
+        <title>Trevor Campbell</title>
+        <link>undefined</link>
+        <description>Trevor's little internet kingdom!</description>
+        <lastBuildDate>Sun, 27 Nov 2022 10:28:51 GMT</lastBuildDate>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+        <generator>https://github.com/jpmonette/feed</generator>
+        <image>
+            <title>Trevor Campbell</title>
+            <url>undefined/favicon.ico</url>
+            <link>undefined</link>
+        </image>
+        <copyright>All rights reserved 2022</copyright>
+        <item>
+            <title><![CDATA[I'm sick in Jakarta ... anyway, here's my website!]]></title>
+            <link>undefined/articles/first-article</link>
+            <guid>undefined/articles/first-article</guid>
+            <pubDate>Fri, 18 Nov 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[When you’re building a website for a company as ambitious as Planetaria, you need to make an impression. I wanted people to visit our website and see animations that looked more realistic than reality itself.]]></description>
+            <content:encoded><![CDATA[<p>If you&#x27;re reading this, I&#x27;m probably already dead ☠️</p>
+<p>Just Kidding! While I may be sick in a foreign country nearly at the opposite point of the globe from home, lots of bed rest finally gave me the time to launch my personal website! I&#x27;ve been putting this off for a while, and travelling the globe was no help! But since getting sick in Jakarta, I decided to buckle down and finish it up!</p>
+<p>Some of you have not seen me in a few months – at the start of August, I packed my (enormous) bags and ventured off to Pakistan! After travelling the country for two whole months, I continued on to Singapore.</p>
+<h2>Why am I here?</h2>
+<p><del>I ask myself this question each morning in panic.</del>
+You&#x27;re probably wondering what this website will be used for! This website gives me a place to post my writings, photographs, videos, and other fun things!</p>
+<p>Lots more to come, but for now, check out my photo gallery to see pictures from my travels in Asia!</p>
+<p><a href="/gallery">📷 Trevor&#x27;s Photo Gallery</a></p>
+<p>See you soon! 👋</p>]]></content:encoded>
+            <author>thatdude@trevordcampbell.com (Trevor Campbell)</author>
+        </item>
+    </channel>
+</rss>
