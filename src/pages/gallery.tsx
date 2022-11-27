@@ -47,6 +47,7 @@ export default function Gallery({ images }: { images: Image[] }) {
               width="0"
               height="0"
               sizes="100vw"
+              priority
               className={classNames(
                 'object-cover sm:object-right w-full h-full transition-all duration-500 ease-in-out',
                 isLoading
