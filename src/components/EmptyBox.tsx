@@ -16,7 +16,7 @@ export const EmptyBox = forwardRef(function EmptyBox(
   return (
     <div
       ref={ref as any}
-      className={clsx('relative px-4 sm:px-8 lg:px-12', className)}
+      className={clsx(className)}
       {...props}
     >
       {children}
