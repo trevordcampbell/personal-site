@@ -52,8 +52,8 @@ export default function Gallery({ images }: { images: Image[] }) {
               className={classNames(
                 'object-cover sm:object-right w-full h-full transition-all duration-500 ease-in-out',
                 isLoading
-                  ? 'scale-110 blur-2xl grayscale'
-                  : 'scale-100 blur-0 grayscale-0'
+                  ? 'blur-2xl grayscale'
+                  : 'blur-0 grayscale-0'
               )}
               onLoadingComplete={() => setLoading(false)}
               src="https://trevordcampbell.imgix.net/pakistan-2022/Still+27.png?auto=format" alt=""

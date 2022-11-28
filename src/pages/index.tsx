@@ -260,7 +260,6 @@ export default function Home({articles}: {articles: any}) {
           name="description"
           content="I’m Trevor, a dude based in the Greater Boston Area. I spend my time creating short films, exploring new hobbies, and thinking of outrageously dumb business ideas."
         />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
       <Container className="mt-8">
         <div className="max-w-2xl">
