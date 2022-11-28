@@ -7,6 +7,7 @@ import clsx from 'clsx'
 import { Container } from '@/components/Container'
 import avatarImage from '@/images/avatar.jpg'
 import React, { Fragment, useEffect, useRef } from 'react'
+import { EmptyBox } from '@/components/EmptyBox'
 
 function CloseIcon(props: any) {
   return (
@@ -375,7 +376,7 @@ export function Header() {
               className="top-0 order-last -mb-3 pt-3"
               style={{ position: 'var(--header-position)' }}
             >
-              <div
+              <EmptyBox
                 className="top-[var(--avatar-top,theme(spacing.3))] w-full"
                 style={{ position: 'var(--header-inner-position)' }}
               >
@@ -393,11 +394,11 @@ export function Header() {
                     style={{ transform: 'var(--avatar-image-transform)' }}
                   />
                 </div>
-              </div>
+              </EmptyBox>
             </Container>
           </>
         )}
-        <div
+        <EmptyBox
           ref={headerRef}
           className="top-0 z-10 h-16 pt-6"
           style={{ position: 'var(--header-position)' }}
@@ -425,7 +426,7 @@ export function Header() {
               </div>
             </div>
           </Container>
-        </div>
+        </EmptyBox>
       </header>
       {isHomePage && <div style={{ height: 'var(--content-offset)' }} />}
     </>
