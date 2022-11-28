@@ -1,4 +1,4 @@
-import { forwardRef, ForwardRefExoticComponent } from 'react'
+import { forwardRef } from 'react'
 import clsx from 'clsx'
 
 const OuterContainer = forwardRef(function OuterContainer(

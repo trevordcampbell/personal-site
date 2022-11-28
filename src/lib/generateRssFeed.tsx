@@ -35,8 +35,8 @@ export async function generateRssFeed() {
 
     feed.addItem({
       title: article.title,
-      id: url,
-      link: url,
+      id: url as string,
+      link: url as string,
       description: article.description,
       content: html,
       author: [author],

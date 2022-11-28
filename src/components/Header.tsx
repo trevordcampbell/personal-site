@@ -8,6 +8,7 @@ import { Container } from '@/components/Container'
 import { EmptyBox } from '@/components/EmptyBox'
 import avatarImage from '@/images/avatar.jpg'
 import React, { Fragment, useEffect, useRef } from 'react'
+import { EmptyBox } from '@/components/EmptyBox'
 
 function CloseIcon(props: any) {
   return (
