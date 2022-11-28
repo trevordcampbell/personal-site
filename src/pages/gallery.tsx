@@ -83,8 +83,7 @@ export default function Gallery({ images }: { images: Image[] }) {
         <div className="mt-32 border-b-2 border-zinc-200 dark:border-zinc-700 pb-5">
           <h3 className="text-2xl font-medium leading-6 text-zinc-900 dark:text-zinc-100"><span className='mr-3'>🇵🇰</span>Pakistan 2022</h3>
           <p className="mt-2 max-w-4xl text-sm text-zinc-500 dark:text-zinc-400">
-            Workcation is a property rental website. Etiam ullamcorper massa viverra consequat, consectetur id nulla tempus.
-            Fringilla egestas justo massa purus sagittis malesuada.
+            I visted Pakistan to attend the wedding of my very good friend, Bilal. When I arrived in the beginning of August. After the wedding, I traveled around the country in search of adventure ... and found lots of it! From the cities to the hills, the deserts to the mountains, I saw a large part of the country and its beauty. Although I was often sleeping in the dirt, mud, rain and snow, I never felt far from home.
           </p>
         </div>
         <div className="grid grid-cols-1 gap-8 mt-8 lg:mt-10 sm:grid-cols-1 lg:grid-cols-2">
@@ -96,8 +95,7 @@ export default function Gallery({ images }: { images: Image[] }) {
         <div className="mt-32 border-b-2 border-zinc-200 dark:border-zinc-700 pb-5">
           <h3 className="text-2xl font-medium leading-6 text-zinc-900 dark:text-zinc-100"><span className='mr-3'>🇸🇬</span>Singapore 2022</h3>
           <p className="mt-2 max-w-4xl text-sm text-zinc-500 dark:text-zinc-400">
-            Workcation is a property rental website. Etiam ullamcorper massa viverra consequat, consectetur id nulla tempus.
-            Fringilla egestas justo massa purus sagittis malesuada.
+            After leaving Pakistan, I stayed in Singapore for two weeks to recharge. I enjoyed how Singapore was so walkable, and managed to visit almost every part of the city during my stay. It's lovely how the city and nature exist together with lots of urban green space. I met lots of interesting people from around the world here!
           </p>
         </div>
         <div className="grid grid-cols-1 gap-8 mt-8 lg:mt-10 sm:grid-cols-1 lg:grid-cols-2">
@@ -109,8 +107,7 @@ export default function Gallery({ images }: { images: Image[] }) {
         <div className="mt-32 border-b-2 border-zinc-200 dark:border-zinc-700 pb-5">
           <h3 className="text-2xl font-medium leading-6 text-zinc-900 dark:text-zinc-100"><span className='mr-3'>🇲🇾</span>Borneo 2022</h3>
           <p className="mt-2 max-w-4xl text-sm text-zinc-500 dark:text-zinc-400">
-            Workcation is a property rental website. Etiam ullamcorper massa viverra consequat, consectetur id nulla tempus.
-            Fringilla egestas justo massa purus sagittis malesuada.
+            After recharging, it was time to head back into the dirt! One of my long-time dreams has been to see truly wild Orangutans in their undisturbed natural habitat. I had the immense privilege to travel with a team of biologist researchers deep into the heart of the Borneo rainforest. The jungle is a fascinating and captivating place ... aside from all the leeches!
           </p>
         </div>
         <div className="grid grid-cols-1 gap-8 mt-8 lg:mt-10 sm:grid-cols-1 lg:grid-cols-2">
@@ -120,7 +117,7 @@ export default function Gallery({ images }: { images: Image[] }) {
         </div>
 
       </div>
-
+      
     </>
   )
 }
