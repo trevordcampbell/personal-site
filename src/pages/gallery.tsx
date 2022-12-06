@@ -49,6 +49,7 @@ export default function Gallery({ images }: { images: Image[] }) {
               height="0"
               sizes="100vw"
               priority
+              quality={50}
               className={classNames(
                 'object-cover sm:object-right w-full h-full transition-all duration-500 ease-in-out',
                 isLoading
@@ -56,7 +57,7 @@ export default function Gallery({ images }: { images: Image[] }) {
                   : 'blur-0 grayscale-0'
               )}
               onLoadingComplete={() => setLoading(false)}
-              src="https://trevordcampbell.imgix.net/pakistan-2022/Still+27.png?&auto=format" alt=""
+              src="https://trevordcampbell.imgix.net/pakistan-2022/Still+27.png&auto=format" alt=""
             />
         </div>
         <div className="relative pt-6 px-4 mx-auto sm:px-6 lg:pt-0 lg:px-8 max-w-7xl">
@@ -143,6 +144,7 @@ function BlurImage({ image }: { image: Image }) {
           height="0"
           sizes="100vw"
           loading='lazy'
+          quality={50}
           className={classNames(
             'object-cover w-full h-full transition-all duration-500 ease-in-out group-hover:scale-105 group-hover:opacity-90',
             isLoading
