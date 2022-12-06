@@ -17,7 +17,12 @@ import image2 from '@/images/photos/image-2.jpg'
 import image3 from '@/images/photos/image-3.jpg'
 import image4 from '@/images/photos/image-4.jpg'
 import image5 from '@/images/photos/image-5.jpg'
+
 import logoPlanetaria from '@/images/logos/planetaria.svg'
+import logoHarvardInnovationLab from '@/images/logos/harvard-innovation-lab.svg'
+import logoVincereHealth from '@/images/logos/vincere-health.svg'
+import logoRetirement from '@/images/logos/retirement.svg'
+
 import { generateRssFeed } from '@/lib/generateRssFeed'
 import { getAllArticles } from '@/lib/getAllArticles'
 import { formatDate } from '@/lib/formatDate'
@@ -69,24 +74,9 @@ function BriefcaseIcon(props: any) {
   )
 }
 
-// TODO: Make Nicer PDF Version of Resume which can be linked for this button...
-// 
-// function ArrowDownIcon(props: any) {
-//   return (
-//     <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" {...props}>
-//       <path
-//         d="M4.75 8.75 8 12.25m0 0 3.25-3.5M8 12.25v-8.5"
-//         strokeWidth="1.5"
-//         strokeLinecap="round"
-//         strokeLinejoin="round"
-//       />
-//     </svg>
-//   )
-// }
-
 function Article({ article }: {article: any}) {
   return (
-    <Card className="" as="article">
+    <Card className="mx-2 sm:mx-0" as="article">
       <Card.Title href={`/articles/${article.slug}`}>
         {article.title}
       </Card.Title>
@@ -113,7 +103,7 @@ function Newsletter() {
       action="/thank-you"
       className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40"
     >
-      <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
+      <h2 className="flex text-lg font-semibold text-zinc-900 dark:text-zinc-100">
         <MailIcon className="h-6 w-6 flex-none" />
         <span className="ml-3">Stay up to date</span>
       </h2>
@@ -140,8 +130,8 @@ function Resume() {
   let resume = [
     {
       company: 'Temporary Retirement',
-      title: 'Chief Retiree',
-      logo: logoPlanetaria,
+      title: 'Chief Enjoyment Officer',
+      logo: logoRetirement,
       start: '2022',
       end: {
         label: 'Present',
@@ -150,15 +140,15 @@ function Resume() {
     },
     {
       company: 'Vincere Health',
-      title: 'Head of Product, Founding Team',
-      logo: logoPlanetaria,
+      title: 'Product, Founding Team',
+      logo: logoVincereHealth,
       start: '2019',
       end: '2022',
     },
     {
       company: 'Harvard Innovation Lab',
       title: 'Advisor + Consultant',
-      logo: logoPlanetaria,
+      logo: logoHarvardInnovationLab,
       start: '2018',
       end: '2019',
     },
@@ -173,15 +163,15 @@ function Resume() {
 
   return (
     <div className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40">
-      <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
+      <h2 className="flex text-lg font-semibold text-zinc-900 dark:text-zinc-100">
         <BriefcaseIcon className="h-6 w-6 flex-none" />
-        <span className="ml-3">Work</span>
+        <span className="ml-3">"Real" Work <span className="ml-2 text-sm font-medium opacity-50">(not pretend)</span></span>
       </h2>
-      <ol className="mt-6 space-y-4">
+      <ol className="mt-6 space-y-4 -ml-2">
         {resume.map((role: any, roleIndex: any) => (
           <li key={roleIndex} className="flex gap-4">
             <div className="relative mt-1 flex h-10 w-10 flex-none items-center justify-center rounded-full shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
-              <Image src={role.logo} alt="" className="h-7 w-7" unoptimized />
+              <Image src={role.logo} alt="Company logo" className="h-8 w-8" unoptimized />
             </div>
             <dl className="flex flex-auto flex-wrap gap-x-2">
               <dt className="sr-only">Company</dt>
@@ -211,12 +201,12 @@ function Resume() {
           </li>
         ))}
       </ol>
-      {/* TODO: Make Nicer PDF of Resume to put in this button link... */}
-
-      {/* <Button href="#" variant="secondary" className="group mt-6 w-full">
-        Download CV
-        <ArrowDownIcon className="h-4 w-4 stroke-zinc-400 transition group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50" />
-      </Button> */}
+      <Button href="https://www.linkedin.com/in/trevordcampbell/" variant="secondary" className="group mt-6 w-full">
+        Check out my LinkedIn
+        <div className="ml-4 group-hover:animate-spin">
+          👀
+        </div>
+      </Button>
     </div>
   )
 }
@@ -249,7 +239,6 @@ function Photos() {
 }
 
 export default function Home({articles}: {articles: any}) {
-  // Include {articles} when complete ...
   return (
     <>
       <Head>
@@ -264,7 +253,6 @@ export default function Home({articles}: {articles: any}) {
       <Container className="mt-8">
         <div className="max-w-2xl">
           <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
-            {/* <span className='mr-4'>Filmmaker 🎬</span> <span className='mr-4'>Tinkerer 🛠</span> <span>and real-life Indiana Jones 🤠</span> */}
             Filmmaker 🎬 Tinkerer 🛠 and real-life Indiana Jones 🤠
           </h1>
           <div className="mt-6 text-base text-zinc-600 dark:text-zinc-400 space-y-6">

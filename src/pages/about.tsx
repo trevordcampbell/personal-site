@@ -81,7 +81,7 @@ export default function About() {
                 {/* <Link href="/gallery" className='font-medium hover:text-teal-500'><span>📷 </span><span className='underline underline-offset-2 decoration-wavy'>Photo and Video Gallery</span></Link> */}
               </p>
               <p>
-                Right now I'm on a temporary retirement from work to explore the other parts of life and enjoy some globetrotting travel. But in my previous life I was the Head of Product at Vincere Health
+                Right now I'm on a temporary retirement from work to explore the other parts of life and enjoy some globetrotting travel. But in my previous life I was the Head of Product at Vincere Health.
               </p>
             </div>
           </div>
