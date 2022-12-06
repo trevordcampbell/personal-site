@@ -57,7 +57,7 @@ export default function Gallery({ images }: { images: Image[] }) {
                   : 'blur-0 grayscale-0'
               )}
               onLoadingComplete={() => setLoading(false)}
-              src="https://trevordcampbell.imgix.net/pakistan-2022/Still+27.png&auto=format" alt=""
+              src="https://trevordcampbell.imgix.net/pakistan-2022/Still+27.png?auto=format" alt=""
             />
         </div>
         <div className="relative pt-6 px-4 mx-auto sm:px-6 lg:pt-0 lg:px-8 max-w-7xl">
