@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" id="Layer_1" x="0" y="0" style="enable-background:new 0 0 200 200" version="1.1" viewBox="0 0 200 200">
+  <style>
+    .st1{fill:url(#SVGID_00000032619434766361020110000015859252643946709658_)}.st2{fill:url(#SVGID_00000145057960243715026080000007551024019232329865_)}.st3{fill:url(#SVGID_00000120546239231688476820000001163591357682646417_)}
+  </style>
+  <g clip-path="url(#b)">
+    <linearGradient id="SVGID_1_" x1="200.5" x2=".5" y1="199.5" y2="-.5" gradientUnits="userSpaceOnUse">
+      <stop offset="0" style="stop-color:#6a0800"/>
+      <stop offset="1" style="stop-color:#c33"/>
+    </linearGradient>
+    <path d="M200.5 199.5H.5V-.5h200v200zM68.05 91.11V57.57H57.6v83.95h10.8v-39.47h38.38v39.39h10.6V57.55h-10.87v33.56H68.05zm63.74-1.75v52.12h9.92V89.36h-9.92zm-1.75-21.73a6.81 6.81 0 0 0 6.07 7.4 6.88 6.88 0 0 0 7.52-6.46 6.67 6.67 0 0 0-6.35-7.13 6.63 6.63 0 0 0-7.24 6.19z" style="fill:url(#SVGID_1_)"/>
+    <linearGradient id="SVGID_00000063596331966107732540000004960029864224724622_" x1="87.49" x2="87.49" y1="141.53" y2="57.56" gradientUnits="userSpaceOnUse">
+      <stop offset="0" style="stop-color:#fff"/>
+      <stop offset="1" style="stop-color:#fff"/>
+    </linearGradient>
+    <path d="M68.05 91.11h38.45V57.55h10.87v83.89h-10.6v-39.39H68.39v39.47h-10.8V57.57h10.45l.01 33.54z" style="fill:url(#SVGID_00000063596331966107732540000004960029864224724622_)"/>
+    <linearGradient id="SVGID_00000124868997985177496520000013245802210613140626_" x1="136.75" x2="136.75" y1="141.48" y2="89.36" gradientUnits="userSpaceOnUse">
+      <stop offset="0" style="stop-color:#fff"/>
+      <stop offset="1" style="stop-color:#fff"/>
+    </linearGradient>
+    <path d="M131.79 89.36h9.92v52.12h-9.92V89.36z" style="fill:url(#SVGID_00000124868997985177496520000013245802210613140626_)"/>
+    <linearGradient id="SVGID_00000062186545226217396670000002607208562697802136_" x1="136.84" x2="136.84" y1="75.06" y2="61.42" gradientUnits="userSpaceOnUse">
+      <stop offset="0" style="stop-color:#fff"/>
+      <stop offset="1" style="stop-color:#fff"/>
+    </linearGradient>
+    <path d="M130.04 67.63a6.63 6.63 0 0 1 7.25-6.19 6.68 6.68 0 0 1 6.35 7.13 6.89 6.89 0 0 1-7.52 6.46 6.83 6.83 0 0 1-6.08-7.4z" style="fill:url(#SVGID_00000062186545226217396670000002607208562697802136_)"/>
+  </g>
+  <defs>
+    <clipPath id="b">
+      <rect width="200" height="200" rx="100" fill="#fff" />
+    </clipPath>
+  </defs>
+</svg>
