@@ -7,14 +7,15 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.1.0",
     "@headlessui/react": "^1.7.2",
     "@heroicons/react": "^2.0.13",
     "@mapbox/rehype-prism": "^0.8.0",
     "@mdx-js/loader": "^2.1.5",
     "@mdx-js/react": "^2.1.5",
     "@next/mdx": "^13.0.2",
+    "@supabase/supabase-js": "^2.1.0",
     "@tailwindcss/typography": "^0.5.4",
+    "@vercel/og": "^0.0.21",
     "autoprefixer": "^10.4.12",
     "clsx": "^1.2.1",
     "fast-glob": "^3.2.11",
