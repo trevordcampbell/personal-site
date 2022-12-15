@@ -62,11 +62,11 @@ export default function About() {
             <div className="max-w-xs px-2.5 lg:max-w-none">
               <Image
                 src={portraitImage}
-                alt=""
+                alt='A very flattering picture of me, the OG "Monke Boi".'
                 sizes="(min-width: 1024px) 32rem, 20rem"
                 quality={100}
                 className={classNames(
-                  'aspect-square rotate-3 rounded-2xl bg-zinc-100 object-cover dark:bg-zinc-800 transition-all duration-500 ease-in-out',
+                  'aspect-square rotate-3 rounded-2xl object-cover transition-all duration-500 ease-in-out',
                   isLoading
                     ? 'blur-2xl grayscale'
                     : 'blur-0 grayscale-0'

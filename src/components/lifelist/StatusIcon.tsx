@@ -4,7 +4,7 @@ type Status = "completed" | "in progress" | "researching" | "paused" | "nuked" |
 
 export function StatusIcon({ status }: { status: Status }) {
 
-  if(status === "completed") {
+  if(status === 'completed') {
     return (
       <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 flex-none fill-teal-100 stroke-teal-600 dark:fill-teal-600/40 dark:stroke-teal-400 stroke-2" strokeLinecap="round" strokeLinejoin="round">
         <circle cx="12" cy="12" r="11" />
@@ -13,7 +13,7 @@ export function StatusIcon({ status }: { status: Status }) {
     )
   }
 
-  if(status === "in progress") {
+  if(status === 'in progress') {
     return (
       <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 flex-none fill-sky-100 stroke-sky-500 dark:fill-sky-500/40 dark:stroke-sky-400 stroke-2" strokeLinecap="round" strokeLinejoin="round">
         <circle cx="12" cy="12" r="11" />
@@ -22,7 +22,7 @@ export function StatusIcon({ status }: { status: Status }) {
     )
   }
 
-  if(status === "researching") {
+  if(status === 'researching') {
     return (
       <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 flex-none fill-purple-100 stroke-purple-500 dark:fill-purple-500/40 dark:stroke-purple-400 stroke-2" strokeLinecap="round" strokeLinejoin="round">
         <circle cx="12" cy="12" r="11" />
@@ -31,7 +31,7 @@ export function StatusIcon({ status }: { status: Status }) {
     )
   }
 
-  if(status === "paused") {
+  if(status === 'paused') {
     return (
       <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 flex-none text-amber-600 fill-amber-100 stroke-amber-600 dark:text-amber-500 dark:fill-amber-600/40 dark:stroke-amber-500 stroke-2" strokeLinecap="round" strokeLinejoin="round">
         <circle cx="12" cy="12" r="11" />
@@ -40,7 +40,7 @@ export function StatusIcon({ status }: { status: Status }) {
     )
   }
 
-  if(status === "nuked") {
+  if(status === 'nuked') {
     return (
       <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 flex-none text-red-500 fill-red-100 stroke-red-500 dark:text-red-400 dark:fill-red-500/40 dark:stroke-red-400 stroke-2" strokeLinecap="round" strokeLinejoin="round">
         <circle cx="12" cy="12" r="11" />
@@ -49,7 +49,7 @@ export function StatusIcon({ status }: { status: Status }) {
     )
   }
 
-  if(status === "untouched") {
+  if(status === 'untouched') {
     return (
       <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 flex-none fill-zinc-50 stroke-zinc-500 dark:fill-zinc-500/50 dark:stroke-zinc-300 stroke-2" strokeLinecap="round" strokeLinejoin="round">
         <circle cx="12" cy="12" r="11" />

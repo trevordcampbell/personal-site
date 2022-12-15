@@ -45,21 +45,21 @@ export default function Gallery({ images }: { images: Image[] }) {
       </Head>
       <section className="relative -top-16 bg-gray-900 py-16 sm:py-16 lg:py-20 xl:py-32">
         <div className="absolute inset-0">
-            <Image 
-              width="0"
-              height="0"
-              sizes="100vw"
-              priority
-              quality={40}
-              className={classNames(
-                'object-cover sm:object-right w-full h-full transition-all duration-500 ease-in-out',
-                isLoading
-                  ? 'blur-2xl grayscale'
-                  : 'blur-0 grayscale-0'
-              )}
-              onLoadingComplete={() => setLoading(false)}
-              src="https://trevordcampbell.imgix.net/pakistan-2022/Still+27.png?auto=format" alt=""
-            />
+          <Image 
+            width="0"
+            height="0"
+            sizes="100vw"
+            priority
+            quality={40}
+            className={classNames(
+              'object-cover sm:object-right w-full h-full transition-all duration-500 ease-in-out',
+              isLoading
+                ? 'blur-2xl grayscale'
+                : 'blur-0 grayscale-0'
+            )}
+            onLoadingComplete={() => setLoading(false)}
+            src="https://trevordcampbell.imgix.net/pakistan-2022/Still+27.png?auto=format" alt=""
+          />
         </div>
         <div className="relative pt-6 px-4 mx-auto sm:px-6 lg:pt-0 lg:px-8 max-w-7xl">
             <div className="text-center font-bold tracking-tight text-white dark:text-zinc-100">

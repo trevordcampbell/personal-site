@@ -1,43 +1,51 @@
-import Image from 'next/image'
 import Head from 'next/head'
 
-import { Card } from '@/components/Card'
 import { SimpleLayout } from '@/components/SimpleLayout'
-
-import { StatusIcon } from '@/components/icons/lifelist/StatusIcon'
-
-import { LegendDisclosure } from '@/components/icons/lifelist/LegendDisclosure'
+import { LegendDisclosure } from '@/components/lifelist/LegendDisclosure'
 import { SectionTitle } from '@/components/SectionTitle'
-import { ListItem } from '@/components/icons/lifelist/ListItem'
+import { ListItem } from '@/components/lifelist/ListItem'
 
-const listItems = [
-  {
-    title: 'Eat a Horse',
-    category: 'food',
-    status: 'complete',
-    link: { href: '#', label: '' },
-  },
-  {
-    title: 'Sue Christiano Ronaldo',
-    category: 'sports',
-    status: 'in progress',
-    link: { href: '#', label: '' },
-  },
-  {
-    title: 'Make poop-flavored Ice Cream',
-    category: 'food',
-    status: 'in progress',
-    link: { href: '#', label: '' },
-  },
-  {
-    title: 'Marry Christiano Ronaldos Wife',
-    category: 'sports',
-    status: 'untouched',
-    link: { href: '#', label: '' },
-  },
-]
+import { supabase } from '@/utils/supabase'
 
-export default function LifeList() {
+export async function getStaticProps() {
+  
+  const { data } = await supabase.from('lifelist').select().order('id')
+  console.log(data);
+  return {
+    props: {
+      listItems: data,
+    },
+    revalidate: 10,
+  }
+}
+
+const statusOrder = ["completed", "in progress", "researching", "untouched", "paused", "nuked"]
+
+type ListItem = {
+  id: number
+  createdAt: Date
+  title: string
+  status: string
+  category: string
+}
+
+export default function LifeList({ listItems }: { listItems: ListItem[] }) {
+
+  function ListSection({ emoji, title, description, category }: { emoji: string, title: string, description: string, category: string }) {  
+    return (
+      <div>
+        <SectionTitle emoji={emoji} title={title} description={description} />
+        <ul
+          role="list"
+          className="mt-6 grid grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-2 lg:grid-cols-2"
+        >
+          {listItems?.filter((listItem) => (listItem.category === category)).map((listItem) => (
+            <ListItem key={listItem.id} title={listItem.title} status={listItem.status} />
+          ))}
+        </ul>
+      </div>
+    )
+  }
 
   return (
     <>
@@ -52,20 +60,118 @@ export default function LifeList() {
         title="The Life List 🔮"
         intro="Here's big list of a bunch of things I want to do and experience before I get sucked into a black hole."
       >
-        <LegendDisclosure />
-      <section className="space-y-32">
-        <div className="mt-12">
-          <SectionTitle emoji="🍱" title="Food" description="This is all the food I Like"/>
-          <ul
-            role="list"
-            className="mt-6 grid grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-2 lg:grid-cols-2"
-          >
-            {listItems?.filter((listItem) => (listItem.category === "food")).map((listItem) => (
-              <ListItem title={listItem.title} status={listItem.status} />
-            ))}
-          </ul>
-        </div>
+
+      <LegendDisclosure />
+
+      <section className="my-32 space-y-32">
+
+        <ListSection 
+          category="food" 
+          emoji="🍱" 
+          title="Cooking, Culinary, & Food" 
+          description="This is all the food I Like."
+        />
+
+        <ListSection 
+          category="sports" 
+          emoji="🌎" 
+          title="Travel" 
+          description="Places I want to go..."
+        />
+
+        <ListSection 
+          category="food" 
+          emoji="🔊" 
+          title="Music" 
+          description="Music I want to make..."
+        />
+
+        <ListSection 
+          category="food" 
+          emoji="🎨" 
+          title="Art" 
+          description="Art I want to make..."
+        />
+
+        <ListSection 
+          category="food" 
+          emoji="💼" 
+          title="Business" 
+          description="Business goals I want to achieve..."
+        />
+        
+        <ListSection 
+          category="food" 
+          emoji="🎬" 
+          title="Film, Photography, & Cinematography" 
+          description="The next Stephen Spielberg???"
+        />
+
+        <ListSection 
+          category="food" 
+          emoji="💻" 
+          title="Coding & Software" 
+          description="I'm not a robot – YOU'RE a robot!"
+        />
+
+        <ListSection 
+          category="food" 
+          emoji="🛠" 
+          title="Crafts & Tinkering" 
+          description="Useful and useless things I want to manifest into reality."
+        />
+
+        <ListSection 
+          category="food" 
+          emoji="🎩" 
+          title="Social Stuff" 
+          description="Random stuff I want to achieve in social world."
+        />
+
+        <ListSection 
+          category="food" 
+          emoji="❤️" 
+          title="Relationships & Love" 
+          description="Maybe I can recreate a season of 'The Bachelor' to speed up the process?"
+        />
+
+        <ListSection 
+          category="food" 
+          emoji="🏎" 
+          title="Vehicles + Transportation" 
+          description="There are so many ways to get around in this world... I want to try ALL of them!"
+        />
+
+        <ListSection 
+          category="food" 
+          emoji="✍️" 
+          title="Writing" 
+          description="Ernest Hemingway had better stand back!"
+        />
+
+        <ListSection 
+          category="food"
+          emoji="🌪" 
+          title="Random Stuff" 
+          description="Don't know what to tell ya, this stuff doesn't fit anywhere else."
+        />
+
+        <ListSection 
+          category="food"
+          emoji="⛓" 
+          title="Crypto & Web 3" 
+          description="Step into the future with me?"
+        />
+
+        <ListSection 
+          category="food"
+          emoji="👤" 
+          title="People I Want to Meet" 
+          description="I don't care if they're dead or alive, let me have dinner with them!"
+        />
+
       </section>
+
       </SimpleLayout>
     </>
   )
