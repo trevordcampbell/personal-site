@@ -19,12 +19,17 @@ export async function getStaticProps() {
   }
 }
 
-const statusOrder = ["completed", "in progress", "researching", "untouched", "paused", "nuked"]
+// TODO: Eventually might want to sort the list items by a specific status order, i.e.
+
+// const statusOrder = ["completed", "in progress", "researching", "untouched", "paused", "nuked"];
+
+// Need to look up sorting Array by another Array to complete this...
 
 type ListItem = {
   id: number
   createdAt: Date
   title: string
+  difficulty: string
   status: string
   category: string
 }
@@ -40,7 +45,7 @@ export default function LifeList({ listItems }: { listItems: ListItem[] }) {
           className="mt-6 grid grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-2 lg:grid-cols-2"
         >
           {listItems?.filter((listItem) => (listItem.category === category)).map((listItem) => (
-            <ListItem key={listItem.id} title={listItem.title} status={listItem.status} />
+            <ListItem key={listItem.id} title={listItem.title} status={listItem.status} difficulty={listItem.difficulty} />
           ))}
         </ul>
       </div>
