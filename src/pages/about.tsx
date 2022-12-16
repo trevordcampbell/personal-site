@@ -2,6 +2,7 @@ import Image from 'next/image'
 import Head from 'next/head'
 import Link from 'next/link'
 import clsx from 'clsx'
+import { useState } from 'react'
 
 import { Container } from '@/components/Container'
 import {
@@ -12,6 +13,10 @@ import {
 } from '@/components/SocialIcons'
 import portraitImage from '@/images/badheadshot.jpg'
 import { FunLink } from '@/components/FunLink'
+
+function classNames(...classes: string[]) {
+  return classes.filter(Boolean).join(' ')
+}
 
 function SocialLink({ className, href, children, icon: Icon }: {className: string, href: string, children: any, icon: any}) {
   return (
@@ -39,6 +44,9 @@ function MailIcon(props: any) {
 }
 
 export default function About() {
+
+  const [isLoading, setLoading] = useState(true)
+
   return (
     <>
       <Head>
@@ -54,10 +62,16 @@ export default function About() {
             <div className="max-w-xs px-2.5 lg:max-w-none">
               <Image
                 src={portraitImage}
-                alt=""
+                alt='A very flattering picture of me, the OG "Monke Boi".'
                 sizes="(min-width: 1024px) 32rem, 20rem"
-                className="aspect-square rotate-3 rounded-2xl bg-zinc-100 object-cover dark:bg-zinc-800"
                 quality={100}
+                className={classNames(
+                  'aspect-square rotate-3 rounded-2xl object-cover transition-all duration-500 ease-in-out',
+                  isLoading
+                    ? 'blur-2xl grayscale'
+                    : 'blur-0 grayscale-0'
+                )}
+                onLoadingComplete={() => setLoading(false)}
               />
             </div>
           </div>

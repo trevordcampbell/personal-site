@@ -2,6 +2,7 @@ import Image from 'next/image'
 import Head from 'next/head'
 import Link from 'next/link'
 import clsx from 'clsx'
+import { useState } from 'react'
 
 import { Button } from '@/components/Button'
 import { Card } from '@/components/Card'
@@ -27,6 +28,10 @@ import { generateRssFeed } from '@/lib/generateRssFeed'
 import { getAllArticles } from '@/lib/getAllArticles'
 import { formatDate } from '@/lib/formatDate'
 import { Funderline } from '@/components/Funderline'
+
+function classNames(...classes: string[]) {
+  return classes.filter(Boolean).join(' ')
+}
 
 function MailIcon(props: any) {
   return (
@@ -101,7 +106,7 @@ function Newsletter() {
   return (
     <form
       action="/thank-you"
-      className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40"
+      className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40 shadow-lg shadow-zinc-200 dark:shadow-zinc-800/75"
     >
       <h2 className="flex text-lg font-semibold text-zinc-900 dark:text-zinc-100">
         <MailIcon className="h-6 w-6 flex-none" />
@@ -162,7 +167,7 @@ function Resume() {
   ]
 
   return (
-    <div className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40">
+    <div className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40 shadow-lg shadow-zinc-200 dark:shadow-zinc-800/75">
       <h2 className="flex text-lg font-semibold text-zinc-900 dark:text-zinc-100">
         <BriefcaseIcon className="h-6 w-6 flex-none" />
         <span className="ml-3">"Real" Work <span className="ml-2 text-sm font-medium opacity-50">(not pretend)</span></span>
@@ -214,6 +219,8 @@ function Resume() {
 function Photos() {
   let rotations = ['rotate-2', '-rotate-2', 'rotate-2', 'rotate-2', '-rotate-2']
 
+  const [isLoading, setLoading] = useState(true)
+
   return (
     <div className="mt-16 sm:mt-20">
       <div className="-my-4 flex justify-center gap-5 overflow-hidden py-4 sm:gap-8">
@@ -229,7 +236,13 @@ function Photos() {
               src={image}
               alt=""
               sizes="(min-width: 640px) 18rem, 11rem"
-              className="absolute inset-0 h-full w-full object-cover"
+              className={classNames(
+                'absolute inset-0 h-full w-full object-cover transition-all duration-500 ease-in-out',
+                isLoading
+                  ? 'blur-2xl grayscale'
+                  : 'blur-0 grayscale-0'
+              )}
+              onLoadingComplete={() => setLoading(false)}
             />
           </div>
         ))}
@@ -300,7 +313,7 @@ export default function Home({articles}: {articles: any}) {
           </div>
           <div className="space-y-10 lg:pl-16 xl:pl-24">
             <Newsletter />
-            <Resume />
+            <Resume/>
           </div>
         </div>
       </Container>
