@@ -30,6 +30,18 @@ export function ListItem({ title, status, difficulty }: { title: string, status:
     )
   }
 
+  if(status === "nuked") {
+    return (
+      <li className="flex">
+        <StatusIcon status={status} />
+        <span className="sr-only">{status}</span>
+        <p className="ml-4 mr-6 align-middle font-semibold leading-tight sm:leading-normal text-red5600 dark:text-red-400 line-through">{title}</p>
+        <DifficultyIcon difficulty={difficulty} />
+        <span className="sr-only">{difficulty}</span>
+      </li>
+    )
+  }
+
   else {
     return (
       <li className="flex">

@@ -9,13 +9,13 @@ import { supabase } from '@/utils/supabase'
 
 export async function getStaticProps() {
   
-  const { data } = await supabase.from('lifelist').select().order('id')
+  const { data } = await supabase.from('lifelist-demo').select().order('id')
   console.log(data);
   return {
     props: {
       listItems: data,
     },
-    revalidate: 10,
+    revalidate: 600,
   }
 }
 
@@ -42,7 +42,7 @@ export default function LifeList({ listItems }: { listItems: ListItem[] }) {
         <SectionTitle emoji={emoji} title={title} description={description} />
         <ul
           role="list"
-          className="mt-6 grid grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-2 lg:grid-cols-2"
+          className="mt-6 grid grid-cols-1 gap-x-4 gap-y-6 sm:gap-x-12 sm:grid-cols-2"
         >
           {listItems?.filter((listItem) => (listItem.category === category)).map((listItem) => (
             <ListItem key={listItem.id} title={listItem.title} status={listItem.status} difficulty={listItem.difficulty} />
@@ -71,56 +71,21 @@ export default function LifeList({ listItems }: { listItems: ListItem[] }) {
       <section className="mt-24 mb-32 space-y-32">
 
         <ListSection 
-          category="food" 
-          emoji="🍱" 
-          title="Cooking, Culinary, & Food" 
-          description="This is all the food I Like."
+          category="random"
+          emoji="🌪" 
+          title="Random Stuff" 
+          description="Don't know what to tell ya, this stuff doesn't fit anywhere else."
         />
 
         <ListSection 
-          category="sports" 
-          emoji="🌎" 
-          title="Travel" 
-          description="Places I want to go..."
-        />
-
-        <ListSection 
-          category="food" 
-          emoji="🔊" 
-          title="Music" 
-          description="Music I want to make..."
-        />
-
-        <ListSection 
-          category="food" 
-          emoji="🎨" 
-          title="Art" 
-          description="Art I want to make..."
-        />
-
-        <ListSection 
-          category="food" 
-          emoji="💼" 
-          title="Business" 
-          description="Business goals I want to achieve..."
-        />
-        
-        <ListSection 
-          category="food" 
+          category="film & cinema" 
           emoji="🎬" 
           title="Film, Photography, & Cinematography" 
           description="The next Stephen Spielberg???"
         />
 
         <ListSection 
-          category="food" 
-          emoji="💻" 
-          title="Coding & Software" 
-          description="I'm not a robot – YOU'RE a robot!"
-        />
-
-        <ListSection 
-          category="food" 
+          category="crafts & tinkering" 
           emoji="🛠" 
           title="Crafts & Tinkering" 
           description="Useful and useless things I want to manifest into reality."
@@ -128,48 +93,83 @@ export default function LifeList({ listItems }: { listItems: ListItem[] }) {
 
         <ListSection 
           category="food" 
+          emoji="🍱" 
+          title="Cooking, Culinary, & Food" 
+          description="This is all the food I Like."
+        />
+
+        <ListSection 
+          category="travel" 
+          emoji="🌎" 
+          title="Travel" 
+          description="Places I want to go..."
+        />
+
+        <ListSection 
+          category="business" 
+          emoji="💼" 
+          title="Business" 
+          description="Business goals I want to achieve..."
+        />
+
+        <ListSection 
+          category="music" 
+          emoji="🔊" 
+          title="Music" 
+          description="Music I want to make..."
+        />
+
+        <ListSection 
+          category="art" 
+          emoji="🎨" 
+          title="Art" 
+          description="Art I want to make..."
+        />
+
+        <ListSection 
+          category="coding" 
+          emoji="💻" 
+          title="Coding & Software" 
+          description="I'm not a robot – YOU'RE a robot!"
+        />
+
+        <ListSection 
+          category="social" 
           emoji="🎩" 
           title="Social Stuff" 
           description="Random stuff I want to achieve in social world."
         />
 
         <ListSection 
-          category="food" 
+          category="relationships & love" 
           emoji="❤️" 
           title="Relationships & Love" 
           description="Maybe I can recreate a season of 'The Bachelor' to speed up the process?"
         />
 
         <ListSection 
-          category="food" 
+          category="vehicles" 
           emoji="🏎" 
           title="Vehicles + Transportation" 
           description="There are so many ways to get around in this world... I want to try ALL of them!"
         />
 
         <ListSection 
-          category="food" 
+          category="writing" 
           emoji="✍️" 
           title="Writing" 
           description="Ernest Hemingway had better stand back!"
         />
 
         <ListSection 
-          category="food"
-          emoji="🌪" 
-          title="Random Stuff" 
-          description="Don't know what to tell ya, this stuff doesn't fit anywhere else."
-        />
-
-        <ListSection 
-          category="food"
+          category="crypto"
           emoji="⛓" 
           title="Crypto & Web 3" 
           description="Step into the future with me?"
         />
 
         <ListSection 
-          category="food"
+          category="people"
           emoji="👤" 
           title="People I Want to Meet" 
           description="I don't care if they're dead or alive, let me have dinner with them!"
