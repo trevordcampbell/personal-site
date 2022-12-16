@@ -125,7 +125,7 @@ function MobileNavigation(props: any) {
                 <MobileNavItem href="/">Home</MobileNavItem>
                 <MobileNavItem href="/about">About</MobileNavItem>
                 <MobileNavItem href="/articles">Articles</MobileNavItem>
-                <MobileNavItem href="/projects">Projects</MobileNavItem>
+                <MobileNavItem href="/life-list">Life List</MobileNavItem>
                 <MobileNavItem href="/gallery">Gallery</MobileNavItem>
                 <MobileNavItem href="/tools">Tools</MobileNavItem>
               </ul>
@@ -163,11 +163,11 @@ function NavItem({ href, children }: {href: any, children: any}) {
 function DesktopNavigation(props: any) {
   return (
     <nav {...props}>
-      <ul className="flex rounded-full bg-white/90 px-3 text-sm font-medium text-zinc-800 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10">
+      <ul className="flex whitespace-nowrap rounded-full bg-white/90 px-3 text-sm font-medium text-zinc-800 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10">
         <NavItem href="/">Home</NavItem>        
         <NavItem href="/about">About</NavItem>
         <NavItem href="/articles">Articles</NavItem>
-        <NavItem href="/projects">Projects</NavItem>
+        <NavItem href="/life-list">Life List</NavItem>
         <NavItem href="/gallery">Gallery</NavItem>
         <NavItem href="/tools">Tools</NavItem>
       </ul>

@@ -66,9 +66,9 @@ export default function LifeList({ listItems }: { listItems: ListItem[] }) {
         intro="Here's big list of a bunch of things I want to do and experience before I get sucked into a black hole."
       >
 
-      <LegendDisclosure />
+      <LegendDisclosure className="-mt-12" />
 
-      <section className="my-32 space-y-32">
+      <section className="mt-24 mb-32 space-y-32">
 
         <ListSection 
           category="food" 
