@@ -52,7 +52,7 @@ export default function Gallery({ images }: { images: Image[] }) {
             priority
             quality={40}
             className={classNames(
-              'object-cover sm:object-right w-full h-full transition-all duration-500 ease-in-out',
+              'object-cover sm:object-right w-full h-full bg-zinc-100 dark:bg-zinc-800 transition-all duration-500 ease-in-out',
               isLoading
                 ? 'blur-2xl grayscale'
                 : 'blur-0 grayscale-0'
@@ -149,9 +149,8 @@ function BlurImage({ image }: { image: Image }) {
           height="0"
           sizes="100vw"
           loading='lazy'
-          quality={40}
           className={classNames(
-            'object-cover w-full h-full transition-all duration-500 ease-in-out group-hover:scale-105 group-hover:opacity-90',
+            'object-cover w-full h-full bg-zinc-100 dark:bg-zinc-800 transition-all duration-500 ease-in-out group-hover:scale-105 group-hover:opacity-90',
             isLoading
               ? 'blur-2xl grayscale'
               : 'blur-0 grayscale-0'

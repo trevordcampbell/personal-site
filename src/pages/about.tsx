@@ -66,7 +66,7 @@ export default function About() {
                 sizes="(min-width: 1024px) 32rem, 20rem"
                 quality={100}
                 className={classNames(
-                  'aspect-square rotate-3 rounded-2xl object-cover transition-all duration-500 ease-in-out',
+                  'aspect-square rotate-3 rounded-2xl object-cover bg-zinc-100 dark:bg-zinc-800 transition-all duration-500 ease-in-out',
                   isLoading
                     ? 'blur-2xl grayscale'
                     : 'blur-0 grayscale-0'

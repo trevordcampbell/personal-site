@@ -237,7 +237,7 @@ function Photos() {
               alt=""
               sizes="(min-width: 640px) 18rem, 11rem"
               className={classNames(
-                'absolute inset-0 h-full w-full object-cover transition-all duration-500 ease-in-out',
+                'absolute inset-0 h-full w-full object-cover bg-zinc-100 dark:bg-zinc-800 transition-all duration-500 ease-in-out',
                 isLoading
                   ? 'blur-2xl grayscale'
                   : 'blur-0 grayscale-0'
