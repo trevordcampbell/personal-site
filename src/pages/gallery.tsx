@@ -97,13 +97,13 @@ export default function Gallery({ images }: { images: Image[] }) {
           </div>
         </div>
 
-        <div>
+        <div className="relative">
           <SectionTitle
             emoji="🇸🇬"
             title="Singapore 2022"
             description="After leaving Pakistan, I stayed in Singapore for two weeks to recharge. I enjoyed how Singapore was so walkable, and managed to visit almost every part of the city during my stay. It's lovely how the city and nature exist together with lots of urban green space. I met lots of interesting people from around the world here!"
           />
-          <div className="grid grid-cols-1 gap-8 mt-8 lg:mt-10 sm:grid-cols-1 lg:grid-cols-2">
+          <div className="relative z-0 grid grid-cols-1 gap-8 mt-8 lg:mt-10 sm:grid-cols-1 lg:grid-cols-2">
             {images?.filter((image) => (image.metadata === 'singapore-2022') && (image.featured === false)).map((image) => (
               <BlurImage key={image.id} image={image}/>
             ))}
