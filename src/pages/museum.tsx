@@ -3,6 +3,7 @@ import Head from 'next/head'
 import { useState } from 'react'
 import { supabase } from '@/utils/supabase'
 import { SectionTitle } from '@/components/SectionTitle'
+import DetailsModalTesting from '@/components/museum/DetailsModal'
 
 export async function getStaticProps() {
  const { data } = await supabase.from('museum-demo').select().order('id')
@@ -18,20 +19,6 @@ export async function getStaticProps() {
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
 }
-
-// type Image = {
-//   id: number
-//   createdAt: Date
-//   title: string
-//   description: string
-//   href: string
-//   imageSrc: string
-//   location: string
-//   metadata: string
-//   imageDate: Date
-//   show: string
-//   featured: boolean
-// }
 
 type MuseumItem = {
   id: number
@@ -51,6 +38,10 @@ type MuseumItem = {
 
 export default function Gallery({ museumItems }: { museumItems: MuseumItem[] }) {
   const [isLoading, setLoading] = useState(true)
+
+  const [open, setOpen] = useState(false)
+  const [modalData, setModalData] = useState<MuseumItem | null>(null);
+
   return (
     <>
       <Head>
@@ -86,7 +77,7 @@ export default function Gallery({ museumItems }: { museumItems: MuseumItem[] }) 
         </div>
       </section>
 
-      <div className="px-4 mx-auto mb-32 space-y-24 max-w-7xl sm:px-6 lg:px-8">
+      <section className="px-4 mx-auto mb-32 space-y-24 max-w-7xl sm:px-6 lg:px-8">
 
         <div className="sm:mx-auto max-w-4xl text-lg text-zinc-600 dark:text-zinc-400 space-y-6">
           <p>
@@ -110,12 +101,13 @@ export default function Gallery({ museumItems }: { museumItems: MuseumItem[] }) 
             />
             <div className="grid grid-cols-1 gap-8 mt-8 lg:mt-10 sm:grid-cols-1 lg:grid-cols-3">
               {museumItems?.filter((museumItem) => (museumItem.category === 'fossil')).map((museumItem) => (
-                <BlurImage key={museumItem.id} museumItem={museumItem}/>
+                <BlurImage key={museumItem.id} museumItem={museumItem} open={open} setOpen={setOpen} modalData={modalData} setModalData={setModalData}
+                />
               ))}
             </div>
           </div>
 
-          <div>
+          {/* <div>
             <SectionTitle
               emoji="🏺"
               title="Ancient Artifacts"
@@ -165,20 +157,29 @@ export default function Gallery({ museumItems }: { museumItems: MuseumItem[] }) 
                 <BlurImage key={museumItem.id} museumItem={museumItem}/>
               ))}
             </div>
-          </div>
+          </div> */}
 
         </section>
-      </div>
-      
+
+      </section>
+
+      {open && (
+        <DetailsModalTesting open={open} setOpen={setOpen} modalData={modalData} />
+      )}      
     </>
   )
 }
 
-function BlurImage({ museumItem }: { museumItem: MuseumItem }) {
+function BlurImage({ museumItem, setOpen, setModalData }: { museumItem: MuseumItem, setOpen: any, setModalData: any, modalData: any, open: boolean }) {
   const [isLoading, setLoading] = useState(true)
 
   return (
-    <a href={museumItem.featureImage+'?auto=format'} className="group">
+    <div className="group"
+      onClick={() => {
+        setOpen(true);
+        setModalData(museumItem);
+      }}
+    >
       <div className="relative aspect-w-1 aspect-h-1 overflow-hidden rounded-lg xl:aspect-w-7 xl:aspect-h-8">
         <Image
           alt={museumItem.title}
@@ -208,6 +209,6 @@ function BlurImage({ museumItem }: { museumItem: MuseumItem }) {
       </div>
       <h3 className="mt-4 text-md font-medium text-zinc-900 dark:text-zinc-100">{museumItem.title}</h3>
       <p className="text-sm text-zinc-500">{museumItem.geography}</p>
-    </a>
+    </div>
   )
 }
