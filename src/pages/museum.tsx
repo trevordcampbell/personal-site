@@ -34,13 +34,16 @@ type MuseumItem = {
   images: string
   junk1: string
   junk2: string
+  otherImages: [
+    {href: string}
+  ]
 }
 
 export default function Gallery({ museumItems }: { museumItems: MuseumItem[] }) {
   const [isLoading, setLoading] = useState(true)
 
   const [open, setOpen] = useState(false)
-  const [modalData, setModalData] = useState<MuseumItem | null>(null);
+  const [modalData, setModalData]: any = useState<MuseumItem | null>(null);
 
   return (
     <>
