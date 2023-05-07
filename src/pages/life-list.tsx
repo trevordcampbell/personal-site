@@ -68,7 +68,7 @@ export default function LifeList({ listItems }: { listItems: ListItem[] }) {
 
       <LegendDisclosure className="-mt-12" />
 
-      <section className="mt-24 mb-32 space-y-32">
+      <section className="mb-32 space-y-32">
 
         <ListSection 
           category="random"

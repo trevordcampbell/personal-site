@@ -91,7 +91,11 @@ export default function About() {
                 Usually, I spend my time capturing video from my travels around the world and turning them into short films. When I'm not behind the camera, I'm exploring new hobbies, making things with my hands, and vomiting out <span className='italic'>very</span> poorly written code from my brain.
               </p>
               <p>
-                If you'd like to explore around my cloud kingdom, feel free to check out my <FunLink href="/gallery" emoji="📷" text="Photo Gallery"></FunLink> or read about some of the wacky things I've been up to in my <FunLink href="/articles" emoji="📚" text="Articles + Other Writings"></FunLink> 
+                If you'd like to borrow my brain, submit an application at <FunLink href="/borrow-my-brain" emoji="🧠" text="Borrow my Brain"></FunLink> 
+                {/* <Link href="/gallery" className='font-medium hover:text-teal-500'><span>📷 </span><span className='underline underline-offset-2 decoration-wavy'>Photo and Video Gallery</span></Link> */}
+              </p>
+              <p>
+                Otherwise, feel free to  explore around my cloud kingdom and check out my <FunLink href="/gallery" emoji="📷" text="Photo Gallery"></FunLink> or read about some of the wacky things I've been up to in my <FunLink href="/articles" emoji="📚" text="Articles + Other Writings"></FunLink> 
                 {/* <Link href="/gallery" className='font-medium hover:text-teal-500'><span>📷 </span><span className='underline underline-offset-2 decoration-wavy'>Photo and Video Gallery</span></Link> */}
               </p>
               <p>
@@ -114,11 +118,11 @@ export default function About() {
                 Follow on LinkedIn
               </SocialLink>
               <SocialLink
-                href="mailto:thatdude@trevordcampbell.com"
+                href="tdcampnh@gmail.com"
                 icon={MailIcon}
                 className="mt-8 border-t border-zinc-100 pt-8 dark:border-zinc-700/40"
               >
-                thatdude@trevordcampbell.com
+                tdcampnh@gmail.com
               </SocialLink>
             </ul>
           </div>
