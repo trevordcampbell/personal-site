@@ -29,8 +29,8 @@ type ListItem = {
   id: number
   createdAt: Date
   title: string
-  difficulty: string
-  status: string
+  difficulty: "easy" | "medium" | "hard" | "legendary"
+  status: "completed" | "in progress" | "researching" | "paused" | "nuked" | "untouched"
   category: string
 }
 
