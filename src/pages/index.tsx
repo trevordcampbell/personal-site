@@ -270,11 +270,11 @@ export default function Home({articles}: {articles: any}) {
     <>
       <Head>
         <title>
-          Trevor Campbell - Filmmaker 🎬 Tinkerer 🛠 and real-life Indiana Jones 🤠
+          Trevor Campbell - Tinkerer 🛠 Filmmaker 🎬 and multimodal human being 🤖
         </title>
         <meta
           name="description"
-          content="I’m Trevor, a dude based in the Greater Boston Area. I spend my time creating short films, exploring new hobbies, and thinking of outrageously dumb business ideas."
+          content="I’m Trevor, a dude based in the Greater Boston Area. I spend my time creating short films, lending my brain to the world, exploring new hobbies, and thinking of outrageously dumb business ideas."
         />
       </Head>
       <Container className="mt-8">
