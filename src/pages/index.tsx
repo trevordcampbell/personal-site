@@ -13,6 +13,7 @@ import {
   GitHubIcon,
   LinkedInIcon,
 } from '@/components/SocialIcons'
+
 import image1 from '@/images/photos/image-1.jpg'
 import image2 from '@/images/photos/image-2.jpg'
 import image3 from '@/images/photos/image-3.jpg'
@@ -23,11 +24,14 @@ import logoPlanetaria from '@/images/logos/planetaria.svg'
 import logoHarvardInnovationLab from '@/images/logos/harvard-innovation-lab.svg'
 import logoVincereHealth from '@/images/logos/vincere-health.svg'
 import logoRetirement from '@/images/logos/retirement.svg'
+import logoBorrowMyBrain from '@/images/logos/borrow-my-brain.svg'
+
 
 import { generateRssFeed } from '@/lib/generateRssFeed'
 import { getAllArticles } from '@/lib/getAllArticles'
 import { formatDate } from '@/lib/formatDate'
 import { Funderline } from '@/components/Funderline'
+import { FunLink } from '@/components/FunLink'
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
@@ -134,6 +138,16 @@ function Newsletter() {
 function Resume() {
   let resume = [
     {
+      company: 'Brain Donor',
+      title: 'Borrow my Brain',
+      logo: logoBorrowMyBrain,
+      start: '2023',
+      end: {
+        label: 'Present',
+        dateTime: new Date().getFullYear(),
+      },
+    },
+    {
       company: 'Temporary Retirement',
       title: 'Chief Enjoyment Officer',
       logo: logoRetirement,
@@ -237,7 +251,7 @@ function Photos() {
               alt=""
               sizes="(min-width: 640px) 18rem, 11rem"
               className={classNames(
-                'absolute inset-0 h-full w-full object-cover transition-all duration-500 ease-in-out',
+                'absolute inset-0 h-full w-full object-cover bg-zinc-100 dark:bg-zinc-800 transition-all duration-500 ease-in-out',
                 isLoading
                   ? 'blur-2xl grayscale'
                   : 'blur-0 grayscale-0'
@@ -266,14 +280,14 @@ export default function Home({articles}: {articles: any}) {
       <Container className="mt-8">
         <div className="max-w-2xl">
           <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
-            Filmmaker 🎬 Tinkerer 🛠 and real-life Indiana Jones 🤠
+            Tinkerer 🛠 Filmmaker 🎬 and multimodal human being 🤖
           </h1>
           <div className="mt-6 text-base text-zinc-600 dark:text-zinc-400 space-y-6">
             <p className="">
-              I’m Trevor, a <span className="italic">dude</span> based in the <Funderline text="Greater Boston Area"/>. I spend my time creating short films, exploring new hobbies, and thinking of outrageously dumb business ideas.
+              I’m Trevor, a <span className="italic">dude</span> based in the <Funderline text="Greater Boston Area"/>. I spend my time creating short films, lending my brain to the world, exploring new hobbies, and thinking of outrageously dumb business ideas.
             </p>
             <p className="">
-              Currently, you can find me wandering around Asia in search of rough gems and adventure!
+              Currently, I'm making half of my brain public property. <FunLink href="/borrow-my-brain" text="Borrow my Brain" emoji='🧠'></FunLink>
             </p>
           </div>
           <div className="mt-6 flex gap-6">
@@ -312,7 +326,7 @@ export default function Home({articles}: {articles: any}) {
             ))}
           </div>
           <div className="space-y-10 lg:pl-16 xl:pl-24">
-            <Newsletter />
+            {/* <Newsletter /> */}
             <Resume/>
           </div>
         </div>
