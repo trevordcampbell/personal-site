@@ -1,10 +1,13 @@
 import { DifficultyIcon } from "./DifficultyIcon";
 import { StatusIcon } from "./StatusIcon"
 
-type Status = "completed" | "in progress" | "researching" | "paused" | "nuked" | "untouched" | string;
-type Difficulty = "easy" | "medium" | "hard" | "legendary" | string;
+interface ListItem {
+  title: string,
+  status: "completed" | "in progress" | "researching" | "paused" | "nuked" | "untouched";
+  difficulty: "easy" | "medium" | "hard" | "legendary";
+}
 
-export function ListItem({ title, status, difficulty }: { title: string, status: Status, difficulty: Difficulty }) {
+export function ListItem({ title, status, difficulty }: ListItem) {
 
   if(status === "completed") {
     return (
