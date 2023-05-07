@@ -25,7 +25,9 @@ export function Footer() {
                 <NavLink href="/about">About</NavLink>
                 <NavLink href="/articles">Articles</NavLink>
                 <NavLink href="/life-list">Life List</NavLink>
-                <NavLink href="/gallery">Gallery</NavLink>
+                {/* <NavLink href="/museum">Museum</NavLink> */}
+                <NavLink href="/borrow-my-brain">Borrow My Brain</NavLink>
+                <NavLink href="/gallery">Photo Gallery</NavLink>
                 <NavLink href="/tools">Tools</NavLink>
               </div>
               <p className="text-sm text-zinc-400 dark:text-zinc-500">

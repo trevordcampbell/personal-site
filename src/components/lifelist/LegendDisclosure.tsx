@@ -12,7 +12,7 @@ function classNames(...classes: any) {
 export function LegendDisclosure({ className }: { className?: string }) {
   return (
     <div 
-      className={clsx(className, 'group bg-zinc-50 rounded-2xl border border-zinc-300 p-6 dark:bg-zinc-800/90 dark:border-zinc-700/40 hover:bg-teal-50 hover:border-teal-400 dark:hover:bg-teal-400/10 hover:dark:border-teal-400')}
+      className={clsx(className, 'group p-6 rounded-2xl border border-zinc-300 dark:border-zinc-700/40 hover:border-teal-400 hover:dark:border-teal-400 bg-zinc-50 dark:bg-zinc-800/90 hover:bg-teal-50 dark:hover:bg-teal-400/10')}
     >
       <div className="mx-auto max-w-7xl">
         <dl>
@@ -53,7 +53,7 @@ export function LegendDisclosure({ className }: { className?: string }) {
                   <Disclosure.Panel as="dd" className="mt-6 pr-12" static>
                     <div className="ml-8 space-y-8">
                       <div className="space-y-4">
-                        <p className="-ml-2 inline-flex items-center rounded bg-zinc-200 dark:bg-zinc-100/10 dark:text-zinc-100 group-hover:bg-teal-200 dark:group-hover:bg-teal-200/20 px-2 py-0.5 text-sm font-medium text-gray-800">
+                        <p className="-ml-2 px-2 py-0.5 inline-flex items-center rounded bg-zinc-200 dark:bg-zinc-100/10 text-sm font-medium  text-gray-800 dark:text-zinc-100 group-hover:bg-teal-200 dark:group-hover:bg-teal-200/20">
                           Completion Statuses
                         </p>
                         <ul className="grid grid-cols-1 lg:grid-cols-3 gap-2 sm:gap-4 text-base">
