@@ -18,9 +18,24 @@ export default function BorrowMyBrain() {
         intro="I'm doing something crazy – I'm making half of my brain public property. What do I mean by this? I'm donating 50% of my brainpower and time to the world at large, to anybody who wants it."
       >
       <section className="max-w-3xl -mt-10 space-y-16 text-zinc-600 dark:text-zinc-400">
-          <Button href="https://tally.so/r/mRdK0j" variant="primary" className="">
-            Request to Borrow my Brain 🧠
-          </Button>
+        <Button href="https://tally.so/r/mRdK0j" variant="primary" className="-mt-10">
+          Request to Borrow my Brain 🧠
+        </Button>
+      </section>
+      <section className="mt-24 space-y-4">
+        <h2 className="text-2xl font-semibold text-zinc-800 dark:text-zinc-100">See what others have requested:</h2>
+        <p className="-my-4 text-zinc-600 dark:text-zinc-400">(You can scroll up / down and left / right inside this Trello container to see full contents)</p>
+        <iframe src="https://trello.com/b/pYtYwljY.html" className="w-full min-h-[36rem] bg-zinc-400"></iframe>
+      </section>
+      <div className="relative my-16">
+        <div className="absolute inset-0 flex items-center" aria-hidden="true">
+          <div className="w-full border-t border-zinc-300 dark:border-zinc-500" />
+        </div>
+        <div className="relative flex justify-center">
+          <span className="bg-white dark:bg-zinc-900 px-3 text-base font-medium leading-6 text-zinc-600 dark:text-zinc-400">More Info About This Initiative</span>
+        </div>
+      </div>
+      <section className="max-w-3xl space-y-16 text-zinc-600 dark:text-zinc-400">
         <div className='space-y-4'>
           <h2 className="text-2xl font-semibold text-zinc-800 dark:text-zinc-100">Why am I doing this?</h2>
           <p>I enjoy solving seemingly impossible problems for fascinating people. I will work on almost any problem, in any field or subject, <Funderline text="explicitly without pay."></Funderline></p>
