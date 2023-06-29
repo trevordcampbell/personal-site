@@ -75,7 +75,7 @@ export default function Gallery({ museumItems }: { museumItems: MuseumItem[] }) 
         <div className="relative pt-6 px-4 mx-auto sm:px-6 lg:pt-0 lg:px-8 max-w-7xl">
             <div className="text-center font-bold tracking-tight text-white dark:text-zinc-100">
                 <p className="text-5xl sm:text-7xl">🏛</p>
-                <h1 className="text-4xl sm:text-5xl">Museum</h1>
+                <h1 className="text-4xl sm:text-5xl">Museum of Trev</h1>
             </div>
         </div>
       </section>
@@ -84,13 +84,13 @@ export default function Gallery({ museumItems }: { museumItems: MuseumItem[] }) 
 
         <div className="sm:mx-auto max-w-4xl text-lg text-zinc-600 dark:text-zinc-400 space-y-6">
           <p>
-            Throughout my life, I have curated a personal museum of things that carry significance. They symbolize the journey I have made, the people I have met, the hardships I have endured, the things that captivate me, and things that provoke deep questions within me:
+            Throughout my life, I have curated a personal museum of things that carry significance. They symbolize the journey I have made, the people I have met, the hardships I have endured, the things that captivate me, and things which provoke deep questions within me:
           </p>
           <p className="inline-flex p-4 rounded-lg italic border-l-4 border-teal-600 dark:border-teal-400 bg-zinc-100 dark:bg-zinc-800/90 font-medium text-teal-600 dark:text-teal-400">
             "Who am I? What do I stand for? Why am I here? Am I doing things that matter?"
           </p>
           <p>
-            I invite you, reader, into my life to explore the Museum of Trevor. I hope what you find will captivate you too.
+            I invite you, reader, into my life to explore the Museum of Trevor — I hope what you find will captivate you too!
           </p>
 
         </div>
@@ -104,13 +104,12 @@ export default function Gallery({ museumItems }: { museumItems: MuseumItem[] }) 
             />
             <div className="grid grid-cols-1 gap-8 mt-8 lg:mt-10 sm:grid-cols-1 lg:grid-cols-3">
               {museumItems?.filter((museumItem) => (museumItem.category === 'fossil')).map((museumItem) => (
-                <BlurImage key={museumItem.id} museumItem={museumItem} open={open} setOpen={setOpen} modalData={modalData} setModalData={setModalData}
-                />
+                <BlurImage key={museumItem.id} museumItem={museumItem} open={open} setOpen={setOpen} modalData={modalData} setModalData={setModalData}/>
               ))}
             </div>
           </div>
 
-          {/* <div>
+          <div>
             <SectionTitle
               emoji="🏺"
               title="Ancient Artifacts"
@@ -118,7 +117,7 @@ export default function Gallery({ museumItems }: { museumItems: MuseumItem[] }) 
             />
             <div className="grid grid-cols-1 gap-8 mt-8 lg:mt-10 sm:grid-cols-1 lg:grid-cols-3">
               {museumItems?.filter((museumItem) => (museumItem.category === 'artifact')).map((museumItem) => (
-                <BlurImage key={museumItem.id} museumItem={museumItem}/>
+                <BlurImage key={museumItem.id} museumItem={museumItem}  open={open} setOpen={setOpen} modalData={modalData} setModalData={setModalData}/>
               ))}
             </div>
           </div>
@@ -131,7 +130,7 @@ export default function Gallery({ museumItems }: { museumItems: MuseumItem[] }) 
             />
             <div className="grid grid-cols-1 gap-8 mt-8 lg:mt-10 sm:grid-cols-1 lg:grid-cols-3">
               {museumItems?.filter((museumItem) => (museumItem.category === 'art')).map((museumItem) => (
-                <BlurImage key={museumItem.id} museumItem={museumItem}/>
+                <BlurImage key={museumItem.id} museumItem={museumItem}  open={open} setOpen={setOpen} modalData={modalData} setModalData={setModalData}/>
               ))}
             </div>
           </div>
@@ -144,7 +143,7 @@ export default function Gallery({ museumItems }: { museumItems: MuseumItem[] }) 
             />
             <div className="grid grid-cols-1 gap-8 mt-8 lg:mt-10 sm:grid-cols-1 lg:grid-cols-3">
               {museumItems?.filter((museumItem) => (museumItem.category === 'project')).map((museumItem) => (
-                <BlurImage key={museumItem.id} museumItem={museumItem}/>
+                <BlurImage key={museumItem.id} museumItem={museumItem}  open={open} setOpen={setOpen} modalData={modalData} setModalData={setModalData}/>
               ))}
             </div>
           </div>
@@ -157,10 +156,10 @@ export default function Gallery({ museumItems }: { museumItems: MuseumItem[] }) 
             />
             <div className="grid grid-cols-1 gap-8 mt-8 lg:mt-10 sm:grid-cols-1 lg:grid-cols-3">
               {museumItems?.filter((museumItem) => (museumItem.category === 'personal life')).map((museumItem) => (
-                <BlurImage key={museumItem.id} museumItem={museumItem}/>
+                <BlurImage key={museumItem.id} museumItem={museumItem}  open={open} setOpen={setOpen} modalData={modalData} setModalData={setModalData}/>
               ))}
             </div>
-          </div> */}
+          </div>
 
         </section>
 

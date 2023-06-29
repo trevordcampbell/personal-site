@@ -20,7 +20,7 @@ export default function App({ Component, pageProps, router }: {Component: any, p
 
   return (
     <>
-      <div className="bg-white dark:bg-zinc-900 selection:bg-teal-600/40 selection:dark:bg-teal-400/30">
+      <div className="bg-white dark:bg-zinc-900 selection:bg-teal-600/40 selection:dark:bg-teal-400/30 min-h-screen">
         <Header />
         <main>
           <Component previousPathname={previousPathname} {...pageProps} />
