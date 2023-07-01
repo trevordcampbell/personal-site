@@ -34,7 +34,7 @@ export default function Films() {
         />
       </Head>
       <SimpleLayout
-        title="Films + Video Content 🔮"
+        title="Films + Video Content 🎬"
         intro="Here's a few of the films and other video content I've created."
       >
       <ul className="space-y-16">
