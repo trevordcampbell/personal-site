@@ -15,17 +15,20 @@ interface MuseumItemBase {
   title: string;
   description: string;
   images: string[];
+  display: boolean;
 }
 
 interface MuseumItemFossil extends MuseumItemBase {
   category: 'fossil';
   details: [{
+    species?: string;
     age?: string;
     timePeriod?: string;
     locationOfOrigin?: string;
     acquisitionMethod?: string;
     size?: string;
     material?: string;
+    other?: string;
   }]
 }
 
@@ -55,7 +58,6 @@ interface MuseumItemCoolRock extends MuseumItemBase {
 
 interface MuseumItemArtwork extends MuseumItemBase {
   category: 'artwork';
-  artist: string;
   details: [{
     year?: string;
     artist?: string;
@@ -68,7 +70,6 @@ interface MuseumItemArtwork extends MuseumItemBase {
 
 interface MuseumItemProject extends MuseumItemBase {
   category: 'project';
-  year: string;
   details: [{
     year?: string;
     status?: string;
@@ -77,9 +78,16 @@ interface MuseumItemProject extends MuseumItemBase {
 
 interface MuseumItemPersonalLife extends MuseumItemBase {
   category: 'personal-life';
-  year: string;
   details: [{
     year?: string;
+  }]
+}
+
+interface MuseumItemPerson extends MuseumItemBase {
+  category: 'person';
+  details: [{
+    year?: string;
+    relation?: string;
   }]
 }
 
@@ -89,7 +97,8 @@ export type MuseumItem =
   | MuseumItemCoolRock
   | MuseumItemArtwork
   | MuseumItemProject
-  | MuseumItemPersonalLife;
+  | MuseumItemPersonalLife
+  | MuseumItemPerson;
 
 // export async function getStaticProps() {
 //  const { data } = await supabase.from('museum-fossils').select().order('id')
@@ -109,14 +118,14 @@ export async function getStaticProps() {
         `
           *,
           details:museum-fossils(*)
-        `).eq('category', 'fossil').order('id'),
+        `).match({category: 'fossil', display: true}).order('id'),
     ]);
     const [artifacts] = await Promise.all([
       supabase.from('museum-items').select(
         `
           *,
           details:museum-artifacts(*)
-        `).eq('category', 'artifact').order('id'),
+        `).match({category: 'artifact', display: true}).order('id'),
 
     ]);
     const [coolRocks] = await Promise.all([
@@ -124,7 +133,7 @@ export async function getStaticProps() {
         `
           *,
           details:museum-cool-rocks(*)
-        `).eq('category', 'cool-rock').order('id'),
+        `).match({category: 'cool-rock', display: true}).order('id'),
 
     ]);
     const [artwork] = await Promise.all([
@@ -132,7 +141,7 @@ export async function getStaticProps() {
         `
           *,
           details:museum-artwork(*)
-        `).eq('category', 'artwork').order('id'),
+        `).match({category: 'artwork', display: true}).order('id'),
 
     ]);
     const [projects] = await Promise.all([
@@ -140,7 +149,7 @@ export async function getStaticProps() {
         `
           *,
           details:museum-projects(*)
-        `).eq('category', 'project').order('id'),
+        `).match({category: 'project', display: true}).order('id'),
 
     ]);
     const [personalLife] = await Promise.all([
@@ -148,7 +157,15 @@ export async function getStaticProps() {
         `
           *,
           details:museum-personal-life(*)
-        `).eq('category', 'personal-life').order('id'),
+        `).match({category: 'pesonal-life', display: true}).order('id'),
+
+    ]);
+    const [people] = await Promise.all([
+      supabase.from('museum-items').select(
+        `
+          *,
+          details:museum-people(*)
+        `).match({category: 'person', display: true}).order('id'),
 
     ]);
 
@@ -162,6 +179,7 @@ export async function getStaticProps() {
       ...(artwork.data ?? []),
       ...(projects.data ?? []),
       ...(personalLife.data ?? []),
+      ...(people.data ?? []),
     ];
 
     console.log(museumItems)
@@ -182,8 +200,6 @@ export async function getStaticProps() {
     };
   }
 }
-
-
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
@@ -234,6 +250,12 @@ function BlurImage({ museumItem, setOpen, setModalData }: { museumItem: MuseumIt
       )
     }
 
+    if (museumItem.category === 'person') {
+      return (
+        <p className="text-sm text-zinc-500">{museumItem.details[0].relation}</p>
+      )
+    }
+
     else
       return (
         <>
@@ -281,7 +303,23 @@ function BlurImage({ museumItem, setOpen, setModalData }: { museumItem: MuseumIt
   )
 }
 
+function MuseumCategoryCounts({ museumItems }: { museumItems: MuseumItem[] }) {
+
+  const categoryCounts = {
+    fossilCount: museumItems.filter((museumItem) => museumItem.category === 'fossil').length,
+    artifactCount: museumItems.filter((museumItem) => museumItem.category === 'artifact').length,
+    coolRockCount: museumItems.filter((museumItem) => museumItem.category === 'cool-rock').length,
+    artworkCount: museumItems.filter((museumItem) => museumItem.category === 'artwork').length,
+    projectCount: museumItems.filter((museumItem) => museumItem.category === 'project').length,
+    personalLifeCount: museumItems.filter((museumItem) => museumItem.category === 'personal-life').length,
+    personCount: museumItems.filter((museumItem) => museumItem.category === 'person').length,
+  };
+
+  return categoryCounts;
+}
+
 export default function Museum({ museumItems }: { museumItems: MuseumItem[] }) {
+
   
   const [isLoading, setLoading] = useState(true);
 
@@ -289,6 +327,8 @@ export default function Museum({ museumItems }: { museumItems: MuseumItem[] }) {
   const [modalData, setModalData]: any = useState<MuseumItem | null>(null);
 
   // let router = useRouter();
+
+  const categoryCounts = MuseumCategoryCounts({museumItems});
 
   return (
     <>
@@ -341,83 +381,125 @@ export default function Museum({ museumItems }: { museumItems: MuseumItem[] }) {
         </div>
 
         <section className="space-y-32">
-          <div>
-            <SectionTitle
-              emoji="🦴"
-              title="Fossils"
-              description="These are some of the most interesting items to me, because they're like screenshots of the past – they make natural history tangible. It's fascinating to hold a fossil in your hands and be transported back in time to a world that used to be."
-            />
-            <div className="grid grid-cols-1 gap-8 mt-8 lg:mt-10 sm:grid-cols-1 lg:grid-cols-3">
-              {museumItems?.filter((museumItem) => (museumItem.category === 'fossil')).map((museumItem) => (
-                <BlurImage key={museumItem.id} museumItem={museumItem} open={open} setOpen={setOpen} modalData={modalData} setModalData={setModalData}/>
-              ))}
-            </div>
-          </div>
 
-          <div>
-            <SectionTitle
-              emoji="🏺"
-              title="Cultural Artifacts"
-              description="Descriptions"
-            />
-            <div className="grid grid-cols-1 gap-8 mt-8 lg:mt-10 sm:grid-cols-1 lg:grid-cols-3">
-              {museumItems?.filter((museumItem) => (museumItem.category === 'artifact')).map((museumItem) => (
-                <BlurImage key={museumItem.id} museumItem={museumItem} open={open} setOpen={setOpen} modalData={modalData} setModalData={setModalData}/>
-              ))}
-            </div>
-          </div>
+          {categoryCounts.fossilCount > 0 &&
+            (
+              <div>
+                <SectionTitle
+                  emoji="🦴"
+                  title="Fossils"
+                  description="These are some of the most interesting items to me, because they're like screenshots of the past – they make natural history tangible. It's fascinating to hold a fossil in your hands and be transported back in time to a world that used to be."
+                />
+                <div className="grid grid-cols-1 gap-8 mt-8 lg:mt-10 sm:grid-cols-1 lg:grid-cols-3">
+                  {museumItems?.filter((museumItem) => (museumItem.category === 'fossil')).map((museumItem) => (
+                    <BlurImage key={museumItem.id} museumItem={museumItem} open={open} setOpen={setOpen} modalData={modalData} setModalData={setModalData}/>
+                  ))}
+                </div>
+              </div>
+            )
+          }
 
-          <div>
-            <SectionTitle
-              emoji="🪨"
-              title="Cool Rocks"
-              description="Description"
-            />
-            <div className="grid grid-cols-1 gap-8 mt-8 lg:mt-10 sm:grid-cols-1 lg:grid-cols-3">
-              {museumItems?.filter((museumItem) => (museumItem.category === 'cool-rock')).map((museumItem) => (
-                <BlurImage key={museumItem.id} museumItem={museumItem}  open={open} setOpen={setOpen} modalData={modalData} setModalData={setModalData}/>
-              ))}
-            </div>
-          </div>
+          {categoryCounts.artifactCount > 0 &&
+            (
+              <div>
+                <SectionTitle
+                  emoji="🏺"
+                  title="Cultural Artifacts"
+                  description="Descriptions"
+                />
+                <div className="grid grid-cols-1 gap-8 mt-8 lg:mt-10 sm:grid-cols-1 lg:grid-cols-3">
+                  {museumItems?.filter((museumItem) => (museumItem.category === 'artifact')).map((museumItem) => (
+                    <BlurImage key={museumItem.id} museumItem={museumItem} open={open} setOpen={setOpen} modalData={modalData} setModalData={setModalData}/>
+                  ))}
+                </div>
+              </div>
+            )
+          }
 
-          <div>
-            <SectionTitle
-              emoji="🖼"
-              title="Artwork"
-              description="Description"
-            />
-            <div className="grid grid-cols-1 gap-8 mt-8 lg:mt-10 sm:grid-cols-1 lg:grid-cols-3">
-              {museumItems?.filter((museumItem) => (museumItem.category === 'artwork')).map((museumItem) => (
-                <BlurImage key={museumItem.id} museumItem={museumItem}  open={open} setOpen={setOpen} modalData={modalData} setModalData={setModalData}/>
-              ))}
-            </div>
-          </div>
+          {categoryCounts.coolRockCount > 0 &&
+            (
+              <div>
+                <SectionTitle
+                  emoji="🪨"
+                  title="Cool Rocks"
+                  description="Description"
+                />
+                <div className="grid grid-cols-1 gap-8 mt-8 lg:mt-10 sm:grid-cols-1 lg:grid-cols-3">
+                  {museumItems?.filter((museumItem) => (museumItem.category === 'cool-rock')).map((museumItem) => (
+                    <BlurImage key={museumItem.id} museumItem={museumItem}  open={open} setOpen={setOpen} modalData={modalData} setModalData={setModalData}/>
+                  ))}
+                </div>
+              </div>
+            )
+          }
 
-          <div>
-            <SectionTitle
-              emoji="🛠"
-              title="Projects"
-              description="Description"
-            />
-            <div className="grid grid-cols-1 gap-8 mt-8 lg:mt-10 sm:grid-cols-1 lg:grid-cols-3">
-              {museumItems?.filter((museumItem) => (museumItem.category === 'project')).map((museumItem) => (
-                <BlurImage key={museumItem.id} museumItem={museumItem}  open={open} setOpen={setOpen} modalData={modalData} setModalData={setModalData}/>
-              ))}
-            </div>
-          </div>
+          {categoryCounts.artworkCount > 0 &&
+            (
+              <div>
+                <SectionTitle
+                  emoji="🖼"
+                  title="Artwork"
+                  description="Description"
+                />
+                <div className="grid grid-cols-1 gap-8 mt-8 lg:mt-10 sm:grid-cols-1 lg:grid-cols-3">
+                  {museumItems?.filter((museumItem) => (museumItem.category === 'artwork')).map((museumItem) => (
+                    <BlurImage key={museumItem.id} museumItem={museumItem}  open={open} setOpen={setOpen} modalData={modalData} setModalData={setModalData}/>
+                  ))}
+                </div>
+              </div>
+            )
+          }
 
-          <div>
-            <SectionTitle
-              emoji="📓"
-              title="Personal Life"
-              description="Description"
-            />
-            <div className="grid grid-cols-1 gap-8 mt-8 lg:mt-10 sm:grid-cols-1 lg:grid-cols-3">
-              {museumItems?.filter((museumItem) => (museumItem.category === 'personal-life')).map((museumItem) => (
-                <BlurImage key={museumItem.id} museumItem={museumItem}  open={open} setOpen={setOpen} modalData={modalData} setModalData={setModalData}/>
-              ))}
-            </div>
-          </div>
+          {categoryCounts.projectCount > 0 &&
+            (
+              <div>
+                <SectionTitle
+                  emoji="🛠"
+                  title="Projects"
+                  description="Description"
+                />
+                <div className="grid grid-cols-1 gap-8 mt-8 lg:mt-10 sm:grid-cols-1 lg:grid-cols-3">
+                  {museumItems?.filter((museumItem) => (museumItem.category === 'project')).map((museumItem) => (
+                    <BlurImage key={museumItem.id} museumItem={museumItem}  open={open} setOpen={setOpen} modalData={modalData} setModalData={setModalData}/>
+                  ))}
+                </div>
+              </div>
+            )
+          }
+
+          {categoryCounts.personalLifeCount > 0 &&
+            (
+              <div>
+                <SectionTitle
+                  emoji="📓"
+                  title="Personal Life"
+                  description="Description"
+                />
+                <div className="grid grid-cols-1 gap-8 mt-8 lg:mt-10 sm:grid-cols-1 lg:grid-cols-3">
+                  {museumItems?.filter((museumItem) => (museumItem.category === 'personal-life')).map((museumItem) => (
+                    <BlurImage key={museumItem.id} museumItem={museumItem}  open={open} setOpen={setOpen} modalData={modalData} setModalData={setModalData}/>
+                  ))}
+                </div>
+              </div>
+            )
+          }
+
+          {categoryCounts.personCount > 0 &&
+            (
+              <div>
+                <SectionTitle
+                  emoji="📓"
+                  title="People"
+                  description="Description"
+                />
+                <div className="grid grid-cols-1 gap-8 mt-8 lg:mt-10 sm:grid-cols-1 lg:grid-cols-3">
+                  {museumItems?.filter((museumItem) => (museumItem.category === 'person')).map((museumItem) => (
+                    <BlurImage key={museumItem.id} museumItem={museumItem}  open={open} setOpen={setOpen} modalData={modalData} setModalData={setModalData}/>
+                  ))}
+                </div>
+              </div>
+            )
+          }
 
         </section>
 

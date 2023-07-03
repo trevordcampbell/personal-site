@@ -11,9 +11,28 @@ function classNames(...classes: any) {
 
 function ItemDetailsBrick({ modalData }: { modalData: MuseumItem }) {
 
+  function existingCheck(input: any) {
+
+    if (input != null) return (
+      true
+    )
+
+    if(input === null) return (
+      false
+    )
+  }
+
   if (modalData.category === "fossil") return (
     <div className="bg-zinc-100 dark:bg-zinc-900 p-4 mt-4 rounded-lg">
       <dl className="grid grid-cols-2 gap-x-4 gap-y-4 sm:grid-cols-2">
+        { existingCheck(modalData.details[0].species) === true &&
+          (
+            <div className="sm:col-span-1">
+              <dt className="text-sm font-medium text-zinc-500">Species</dt>
+              <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details[0].species}</dd>
+            </div>
+          )
+        }
         <div className="sm:col-span-1">
           <dt className="text-sm font-medium text-zinc-500">Age</dt>
           <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details[0].age}</dd>
@@ -150,12 +169,23 @@ function ItemDetailsBrick({ modalData }: { modalData: MuseumItem }) {
     </div>
   )
 
-    if (modalData.category === "personal-life") return (
+  if (modalData.category === "personal-life") return (
     <div className="bg-zinc-100 dark:bg-zinc-900 p-4 mt-4 rounded-lg">
       <dl className="grid grid-cols-2 gap-x-4 gap-y-4 sm:grid-cols-2">
         <div className="sm:col-span-1">
           <dt className="text-sm font-medium text-zinc-500">Year</dt>
           <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details[0].year}</dd>
+        </div>
+      </dl>
+    </div>
+  )
+  
+  if (modalData.category === "person") return (
+    <div className="bg-zinc-100 dark:bg-zinc-900 p-4 mt-4 rounded-lg">
+      <dl className="grid grid-cols-2 gap-x-4 gap-y-4 sm:grid-cols-2">
+        <div className="sm:col-span-1">
+          <dt className="text-sm font-medium text-zinc-500">Relation</dt>
+          <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details[0].relation}</dd>
         </div>
       </dl>
     </div>
