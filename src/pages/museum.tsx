@@ -1,26 +1,30 @@
 import Image from 'next/image'
-// import { useRouter } from 'next/router'
+import { useRouter } from 'next/router'
+import Router from 'next/router'
+import { useEffect } from 'react'
 import Head from 'next/head'
 import { useState } from 'react'
 import { supabase } from '@/utils/supabase'
 import { SectionTitle } from '@/components/SectionTitle'
 import DetailsModalTesting2 from '@/components/museum/DetailsModal2'
-// import { stringToSlug } from '@/lib/stringToSlug'
+import { stringToSlug } from '@/lib/stringToSlug'
 
 interface MuseumItemBase {
   id: number;
   createdAt: Date;
-  itemId: string;
+  itemID: string;
   category: string;
   title: string;
   description: string;
   images: string[];
+  videos?: string[];
+  threeD_model?: string[];
   display: boolean;
 }
 
 interface MuseumItemFossil extends MuseumItemBase {
   category: 'fossil';
-  details: [{
+  details: {
     species?: string;
     age?: string;
     timePeriod?: string;
@@ -29,66 +33,66 @@ interface MuseumItemFossil extends MuseumItemBase {
     size?: string;
     material?: string;
     other?: string;
-  }]
+  }
 }
 
 interface MuseumItemArtifact extends MuseumItemBase {
   category: 'artifact';
-  details: [{
+  details: {
     age?: string;
     timePeriod?: string;
     locationOfOrigin?: string;
     acquisitionMethod?: string;
     size?: string;
     material?: string;
-  }]
+  }
 }
 
 interface MuseumItemCoolRock extends MuseumItemBase {
   category: 'cool-rock';
-  details: [{
+  details: {
     age?: string;
     timePeriod?: string;
     locationOfOrigin?: string;
     acquisitionMethod?: string;
     size?: string;
     material?: string;
-  }]
+  }
 }
 
 interface MuseumItemArtwork extends MuseumItemBase {
   category: 'artwork';
-  details: [{
+  details: {
     year?: string;
     artist?: string;
     locationOfOrigin?: string;
     acquisitionMethod?: string;
     size?: string;
     medium?: string;
-  }]
+  }
 }
 
 interface MuseumItemProject extends MuseumItemBase {
   category: 'project';
-  details: [{
+  details: {
     year?: string;
     status?: string;
-  }]
+  }
 }
 
 interface MuseumItemPersonalLife extends MuseumItemBase {
   category: 'personal-life';
-  details: [{
+  details: {
     year?: string;
-  }]
+  }
 }
 
 interface MuseumItemPerson extends MuseumItemBase {
   category: 'person';
-  details: [{
+  details: {
     year?: string;
     relation?: string;
-  }]
+  }
 }
 
 export type MuseumItem =
@@ -99,17 +103,6 @@ export type MuseumItem =
   | MuseumItemProject
   | MuseumItemPersonalLife
   | MuseumItemPerson;
-
-// export async function getStaticProps() {
-//  const { data } = await supabase.from('museum-fossils').select().order('id')
-//  console.log({data})
-//   return {
-//     props: {
-//       museumItems: data,
-//     },
-//     revalidate: 600,
-//   }
-// }
 
 export async function getStaticProps() {
   try {
@@ -208,7 +201,9 @@ function classNames(...classes: string[]) {
 function BlurImage({ museumItem, setOpen, setModalData }: { museumItem: MuseumItem, setOpen: any, setModalData: any, modalData: MuseumItem, open: boolean }) {
   const [isLoading, setLoading] = useState(true);
   const featureImage = museumItem.images[0]+'?auto=format';
-  
+
+  const urlSlug = stringToSlug(museumItem.title);
+
   // NOTE: Move this somewhere relevent for modal-based routing
   // const friendlyURLSlug = stringToSlug(museumItem.title);
 
@@ -216,43 +211,43 @@ function BlurImage({ museumItem, setOpen, setModalData }: { museumItem: MuseumIt
 
     if (museumItem.category === 'fossil') {
       return (
-        <p className="text-sm text-zinc-500">{museumItem.details[0].locationOfOrigin}</p>
+        <p className="text-sm text-zinc-500">{museumItem.details.locationOfOrigin}</p>
       )
     }
 
     if (museumItem.category === 'artifact') {
       return (
-        <p className="text-sm text-zinc-500">{museumItem.details[0].locationOfOrigin}</p>
+        <p className="text-sm text-zinc-500">{museumItem.details.locationOfOrigin}</p>
       )
     }
 
     if (museumItem.category === 'cool-rock') {
       return (
-        <p className="text-sm text-zinc-500">{museumItem.details[0].locationOfOrigin}</p>
+        <p className="text-sm text-zinc-500">{museumItem.details.locationOfOrigin}</p>
       )
     }
 
     if (museumItem.category === 'artwork') {
       return (
-        <p className="text-sm text-zinc-500">{museumItem.details[0].artist}</p>
+        <p className="text-sm text-zinc-500">{museumItem.details.artist}</p>
       )
     }
 
     if (museumItem.category === 'project') {
       return (
-        <p className="text-sm text-zinc-500">{museumItem.details[0].year}</p>
+        <p className="text-sm text-zinc-500">{museumItem.details.year}</p>
       )
     }
 
     if (museumItem.category === 'personal-life') {
       return (
-        <p className="text-sm text-zinc-500">{museumItem.details[0].year}</p>
+        <p className="text-sm text-zinc-500">{museumItem.details.year}</p>
       )
     }
 
     if (museumItem.category === 'person') {
       return (
-        <p className="text-sm text-zinc-500">{museumItem.details[0].relation}</p>
+        <p className="text-sm text-zinc-500">{museumItem.details.relation}</p>
       )
     }
 
@@ -268,6 +263,7 @@ function BlurImage({ museumItem, setOpen, setModalData }: { museumItem: MuseumIt
       onClick={() => {
         setModalData(museumItem);
         setOpen(true);
+        Router.push(`/museum?category=${museumItem.category}&item=${museumItem.itemID}`, undefined, { shallow: true });
       }}
     >
       <div className="relative aspect-w-1 aspect-h-1 overflow-hidden rounded-lg xl:aspect-w-7 xl:aspect-h-8">
@@ -329,6 +325,26 @@ export default function Museum({ museumItems }: { museumItems: MuseumItem[] }) {
   // let router = useRouter();
 
   const categoryCounts = MuseumCategoryCounts({museumItems});
+
+  const router = useRouter();
+
+  useEffect(() => {
+    const category = router.query.category;
+    const itemID = router.query.item;
+    if (category && itemID) {
+      // Assuming museumItems is an array of all items
+      const itemToShow = museumItems.find(item => item.category === category && item.itemID === itemID);
+      if (itemToShow) {
+        setModalData(itemToShow);
+        setOpen(true);
+      }
+    }
+  }, [router.query, museumItems]);
+
+  const closeModal = () => {
+    setOpen(false);
+    router.push('/museum', undefined, { shallow: true });
+  };
 
   return (
     <>
@@ -506,7 +522,7 @@ export default function Museum({ museumItems }: { museumItems: MuseumItem[] }) {
       </section>
 
       {open && (
-        <DetailsModalTesting2 open={open} setOpen={setOpen} modalData={modalData} />
+        <DetailsModalTesting2 open={open} closeModal={closeModal}  modalData={modalData} />
       )}      
     </>
   )

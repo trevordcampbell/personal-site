@@ -1,4 +1,5 @@
 import { Fragment, useState } from 'react'
+import { useRouter } from 'next/router';
 import Image from 'next/image'
 import { Dialog, Transition, RadioGroup } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
@@ -25,37 +26,37 @@ function ItemDetailsBrick({ modalData }: { modalData: MuseumItem }) {
   if (modalData.category === "fossil") return (
     <div className="bg-zinc-100 dark:bg-zinc-900 p-4 mt-4 rounded-lg">
       <dl className="grid grid-cols-2 gap-x-4 gap-y-4 sm:grid-cols-2">
-        { existingCheck(modalData.details[0].species) === true &&
+        { existingCheck(modalData.details.species) === true &&
           (
             <div className="sm:col-span-1">
               <dt className="text-sm font-medium text-zinc-500">Species</dt>
-              <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details[0].species}</dd>
+              <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details.species}</dd>
             </div>
           )
         }
         <div className="sm:col-span-1">
           <dt className="text-sm font-medium text-zinc-500">Age</dt>
-          <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details[0].age}</dd>
+          <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details.age}</dd>
         </div>
         <div className="sm:col-span-1">
           <dt className="text-sm font-medium text-zinc-500">Time Period</dt>
-          <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details[0].timePeriod}</dd>
+          <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details.timePeriod}</dd>
         </div>
         <div className="sm:col-span-1">
           <dt className="text-sm font-medium text-zinc-500">Location of Origin</dt>
-          <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details[0].locationOfOrigin}</dd>
+          <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details.locationOfOrigin}</dd>
         </div>
         <div className="sm:col-span-1">
           <dt className="text-sm font-medium text-zinc-500">How It Was Acquired</dt>
-          <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details[0].acquisitionMethod}</dd>
+          <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details.acquisitionMethod}</dd>
         </div>
         <div className="sm:col-span-1">
           <dt className="text-sm font-medium text-zinc-500">Size</dt>
-          <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details[0].size}</dd>
+          <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details.size}</dd>
         </div>
         <div className="sm:col-span-1">
           <dt className="text-sm font-medium text-zinc-500">Material</dt>
-          <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details[0].material}</dd>
+          <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details.material}</dd>
         </div>
       </dl>
     </div>
@@ -66,27 +67,27 @@ function ItemDetailsBrick({ modalData }: { modalData: MuseumItem }) {
       <dl className="grid grid-cols-2 gap-x-4 gap-y-4 sm:grid-cols-2">
         <div className="sm:col-span-1">
           <dt className="text-sm font-medium text-zinc-500">Age</dt>
-          <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details[0].age}</dd>
+          <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details.age}</dd>
         </div>
         <div className="sm:col-span-1">
           <dt className="text-sm font-medium text-zinc-500">Time Period</dt>
-          <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details[0].timePeriod}</dd>
+          <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details.timePeriod}</dd>
         </div>
         <div className="sm:col-span-1">
           <dt className="text-sm font-medium text-zinc-500">Location of Origin</dt>
-          <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details[0].locationOfOrigin}</dd>
+          <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details.locationOfOrigin}</dd>
         </div>
         <div className="sm:col-span-1">
           <dt className="text-sm font-medium text-zinc-500">How It Was Acquired</dt>
-          <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details[0].acquisitionMethod}</dd>
+          <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details.acquisitionMethod}</dd>
         </div>
         <div className="sm:col-span-1">
           <dt className="text-sm font-medium text-zinc-500">Size</dt>
-          <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details[0].size}</dd>
+          <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details.size}</dd>
         </div>
         <div className="sm:col-span-1">
           <dt className="text-sm font-medium text-zinc-500">Material</dt>
-          <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details[0].material}</dd>
+          <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details.material}</dd>
         </div>
       </dl>
     </div>
@@ -97,27 +98,27 @@ function ItemDetailsBrick({ modalData }: { modalData: MuseumItem }) {
       <dl className="grid grid-cols-2 gap-x-4 gap-y-4 sm:grid-cols-2">
         <div className="sm:col-span-1">
           <dt className="text-sm font-medium text-zinc-500">Age</dt>
-          <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details[0].age}</dd>
+          <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details.age}</dd>
         </div>
         <div className="sm:col-span-1">
           <dt className="text-sm font-medium text-zinc-500">Time Period</dt>
-          <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details[0].timePeriod}</dd>
+          <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details.timePeriod}</dd>
         </div>
         <div className="sm:col-span-1">
           <dt className="text-sm font-medium text-zinc-500">Location of Origin</dt>
-          <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details[0].locationOfOrigin}</dd>
+          <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details.locationOfOrigin}</dd>
         </div>
         <div className="sm:col-span-1">
           <dt className="text-sm font-medium text-zinc-500">How It Was Acquired</dt>
-          <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details[0].acquisitionMethod}</dd>
+          <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details.acquisitionMethod}</dd>
         </div>
         <div className="sm:col-span-1">
           <dt className="text-sm font-medium text-zinc-500">Size</dt>
-          <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details[0].size}</dd>
+          <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details.size}</dd>
         </div>
         <div className="sm:col-span-1">
           <dt className="text-sm font-medium text-zinc-500">Material</dt>
-          <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details[0].material}</dd>
+          <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details.material}</dd>
         </div>
       </dl>
     </div>
@@ -128,27 +129,27 @@ function ItemDetailsBrick({ modalData }: { modalData: MuseumItem }) {
       <dl className="grid grid-cols-2 gap-x-4 gap-y-4 sm:grid-cols-2">
         <div className="sm:col-span-1">
           <dt className="text-sm font-medium text-zinc-500">Artist</dt>
-          <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details[0].artist}</dd>
+          <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details.artist}</dd>
         </div>
         <div className="sm:col-span-1">
           <dt className="text-sm font-medium text-zinc-500">Year Work Was Created</dt>
-          <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details[0].year}</dd>
+          <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details.year}</dd>
         </div>
         <div className="sm:col-span-1">
           <dt className="text-sm font-medium text-zinc-500">Location of Origin</dt>
-          <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details[0].locationOfOrigin}</dd>
+          <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details.locationOfOrigin}</dd>
         </div>
         <div className="sm:col-span-1">
           <dt className="text-sm font-medium text-zinc-500">How It Was Acquired</dt>
-          <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details[0].acquisitionMethod}</dd>
+          <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details.acquisitionMethod}</dd>
         </div>
         <div className="sm:col-span-1">
           <dt className="text-sm font-medium text-zinc-500">Size</dt>
-          <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details[0].size}</dd>
+          <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details.size}</dd>
         </div>
         <div className="sm:col-span-1">
           <dt className="text-sm font-medium text-zinc-500">Medium</dt>
-          <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details[0].medium}</dd>
+          <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details.medium}</dd>
         </div>
       </dl>
     </div>
@@ -159,11 +160,11 @@ function ItemDetailsBrick({ modalData }: { modalData: MuseumItem }) {
       <dl className="grid grid-cols-2 gap-x-4 gap-y-4 sm:grid-cols-2">
         <div className="sm:col-span-1">
           <dt className="text-sm font-medium text-zinc-500">Project Operating Period</dt>
-          <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details[0].year}</dd>
+          <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details.year}</dd>
         </div>
         <div className="sm:col-span-1">
           <dt className="text-sm font-medium text-zinc-500">Status</dt>
-          <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details[0].status}</dd>
+          <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details.status}</dd>
         </div>
       </dl>
     </div>
@@ -174,7 +175,7 @@ function ItemDetailsBrick({ modalData }: { modalData: MuseumItem }) {
       <dl className="grid grid-cols-2 gap-x-4 gap-y-4 sm:grid-cols-2">
         <div className="sm:col-span-1">
           <dt className="text-sm font-medium text-zinc-500">Year</dt>
-          <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details[0].year}</dd>
+          <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details.year}</dd>
         </div>
       </dl>
     </div>
@@ -185,7 +186,7 @@ function ItemDetailsBrick({ modalData }: { modalData: MuseumItem }) {
       <dl className="grid grid-cols-2 gap-x-4 gap-y-4 sm:grid-cols-2">
         <div className="sm:col-span-1">
           <dt className="text-sm font-medium text-zinc-500">Relation</dt>
-          <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details[0].relation}</dd>
+          <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details.relation}</dd>
         </div>
       </dl>
     </div>
@@ -197,7 +198,7 @@ function ItemDetailsBrick({ modalData }: { modalData: MuseumItem }) {
   )
 }
 
-export default function DetailsModalTesting2({ modalData, open, setOpen }: { modalData: MuseumItem, open: boolean, setOpen: any}) {
+export default function DetailsModalTesting2({ modalData, open, closeModal }: { modalData: MuseumItem, open: boolean, closeModal: any}) {
 
   const [selectedImage, setSelectedImage] = useState(modalData.images[0])
 
@@ -205,7 +206,7 @@ export default function DetailsModalTesting2({ modalData, open, setOpen }: { mod
 
   return (
     <Transition.Root show={open} as={Fragment}>
-      <Dialog as="div" className="relative z-50" onClose={setOpen}>
+      <Dialog as="div" className="relative z-50" onClose={closeModal}>
         <Transition.Child
           as={Fragment}
           enter="ease-out duration-800"
@@ -238,8 +239,8 @@ export default function DetailsModalTesting2({ modalData, open, setOpen }: { mod
                   <button
                     type="button"
                     className="absolute top-4 right-4 text-gray-400 hover:text-gray-500 sm:top-8 sm:right-6 md:top-6 md:right-6 lg:top-8 lg:right-8"
-                    onClick={() => setOpen(false)}
-                  >
+                    onClick={closeModal}
+                    >
                     <span className="sr-only">Close</span>
                     <XMarkIcon className="h-6 w-6" aria-hidden="true" />
                   </button>
