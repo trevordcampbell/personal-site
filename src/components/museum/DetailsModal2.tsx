@@ -1,10 +1,13 @@
 import { Fragment, useState } from 'react'
-import { useRouter } from 'next/router';
 import Image from 'next/image'
 import { Dialog, Transition, RadioGroup } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 
 import { MuseumItem } from '@/pages/museum'
+
+import React, { Suspense } from 'react';
+// TODO: Make Image Selector into a multi-content selector able to handle images + videos + 3D Models. See Link: https://github.com/splinetool/react-spline
+const Spline = React.lazy(() => import('@splinetool/react-spline'));
 
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(' ')
@@ -273,6 +276,11 @@ export default function DetailsModalTesting2({ modalData, open, closeModal }: { 
                           onLoadingComplete={() => setLoading(false)}
                         />
                       </div>
+                      {/* <div>
+                        <Suspense fallback={<div className='text-black text-lg'>Loading...</div>}>
+                          <Spline scene="https://prod.spline.design/T2t1Or6zZBdbOhhZ/scene.splinecode" />
+                        </Suspense>
+                      </div> */}
                       <div className="mt-2">
                         <RadioGroup value={selectedImage} onChange={setSelectedImage} className="mt-6">
                           <RadioGroup.Label className="sr-only"> Choose an Image </RadioGroup.Label>

@@ -18,7 +18,7 @@ interface MuseumItemBase {
   description: string;
   images: string[];
   videos?: string[];
-  threeD_model?: string[];
+  threeD_model?: string;
   display: boolean;
 }
 
