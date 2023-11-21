@@ -26,101 +26,31 @@ function ItemDetailsBrick({ modalData }: { modalData: MuseumItem }) {
     )
   }
 
-  if (modalData.category === "fossil") return (
-    <div className="bg-zinc-100 dark:bg-zinc-900 p-4 mt-4 rounded-lg">
-      <dl className="grid grid-cols-2 gap-x-4 gap-y-4 sm:grid-cols-2">
-        { existingCheck(modalData.details.species) === true &&
-          (
-            <div className="sm:col-span-1">
-              <dt className="text-sm font-medium text-zinc-500">Species</dt>
-              <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details.species}</dd>
-            </div>
-          )
-        }
-        <div className="sm:col-span-1">
-          <dt className="text-sm font-medium text-zinc-500">Age</dt>
-          <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details.age}</dd>
-        </div>
-        <div className="sm:col-span-1">
-          <dt className="text-sm font-medium text-zinc-500">Time Period</dt>
-          <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details.timePeriod}</dd>
-        </div>
-        <div className="sm:col-span-1">
-          <dt className="text-sm font-medium text-zinc-500">Location of Origin</dt>
-          <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details.locationOfOrigin}</dd>
-        </div>
-        <div className="sm:col-span-1">
-          <dt className="text-sm font-medium text-zinc-500">How It Was Acquired</dt>
-          <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details.acquisitionMethod}</dd>
-        </div>
-        <div className="sm:col-span-1">
-          <dt className="text-sm font-medium text-zinc-500">Size</dt>
-          <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details.size}</dd>
-        </div>
-        <div className="sm:col-span-1">
-          <dt className="text-sm font-medium text-zinc-500">Material</dt>
-          <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details.material}</dd>
-        </div>
-      </dl>
-    </div>
-  )
-
   if (modalData.category === "artifact") return (
     <div className="bg-zinc-100 dark:bg-zinc-900 p-4 mt-4 rounded-lg">
       <dl className="grid grid-cols-2 gap-x-4 gap-y-4 sm:grid-cols-2">
         <div className="sm:col-span-1">
-          <dt className="text-sm font-medium text-zinc-500">Age</dt>
+          <dt className="text-sm font-medium text-zinc-700/50 dark:text-zinc-500">Age</dt>
           <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details.age}</dd>
         </div>
         <div className="sm:col-span-1">
-          <dt className="text-sm font-medium text-zinc-500">Time Period</dt>
+          <dt className="text-sm font-medium text-zinc-700/50 dark:text-zinc-500">Time Period</dt>
           <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details.timePeriod}</dd>
         </div>
         <div className="sm:col-span-1">
-          <dt className="text-sm font-medium text-zinc-500">Location of Origin</dt>
+          <dt className="text-sm font-medium text-zinc-700/50 dark:text-zinc-500">Location of Origin</dt>
           <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details.locationOfOrigin}</dd>
         </div>
         <div className="sm:col-span-1">
-          <dt className="text-sm font-medium text-zinc-500">How It Was Acquired</dt>
+          <dt className="text-sm font-medium text-zinc-700/50 dark:text-zinc-500">How It Was Acquired</dt>
           <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details.acquisitionMethod}</dd>
         </div>
         <div className="sm:col-span-1">
-          <dt className="text-sm font-medium text-zinc-500">Size</dt>
+          <dt className="text-sm font-medium text-zinc-700/50 dark:text-zinc-500">Size</dt>
           <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details.size}</dd>
         </div>
         <div className="sm:col-span-1">
-          <dt className="text-sm font-medium text-zinc-500">Material</dt>
-          <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details.material}</dd>
-        </div>
-      </dl>
-    </div>
-  )
-
-  if (modalData.category === "cool-rock") return (
-    <div className="bg-zinc-100 dark:bg-zinc-900 p-4 mt-4 rounded-lg">
-      <dl className="grid grid-cols-2 gap-x-4 gap-y-4 sm:grid-cols-2">
-        <div className="sm:col-span-1">
-          <dt className="text-sm font-medium text-zinc-500">Age</dt>
-          <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details.age}</dd>
-        </div>
-        <div className="sm:col-span-1">
-          <dt className="text-sm font-medium text-zinc-500">Time Period</dt>
-          <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details.timePeriod}</dd>
-        </div>
-        <div className="sm:col-span-1">
-          <dt className="text-sm font-medium text-zinc-500">Location of Origin</dt>
-          <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details.locationOfOrigin}</dd>
-        </div>
-        <div className="sm:col-span-1">
-          <dt className="text-sm font-medium text-zinc-500">How It Was Acquired</dt>
-          <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details.acquisitionMethod}</dd>
-        </div>
-        <div className="sm:col-span-1">
-          <dt className="text-sm font-medium text-zinc-500">Size</dt>
-          <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details.size}</dd>
-        </div>
-        <div className="sm:col-span-1">
-          <dt className="text-sm font-medium text-zinc-500">Material</dt>
+          <dt className="text-sm font-medium text-zinc-700/50 dark:text-zinc-500">Material</dt>
           <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details.material}</dd>
         </div>
       </dl>
@@ -131,28 +61,98 @@ function ItemDetailsBrick({ modalData }: { modalData: MuseumItem }) {
     <div className="bg-zinc-100 dark:bg-zinc-900 p-4 mt-4 rounded-lg">
       <dl className="grid grid-cols-2 gap-x-4 gap-y-4 sm:grid-cols-2">
         <div className="sm:col-span-1">
-          <dt className="text-sm font-medium text-zinc-500">Artist</dt>
+          <dt className="text-sm font-medium text-zinc-700/50 dark:text-zinc-500">Artist</dt>
           <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details.artist}</dd>
         </div>
         <div className="sm:col-span-1">
-          <dt className="text-sm font-medium text-zinc-500">Year Work Was Created</dt>
+          <dt className="text-sm font-medium text-zinc-700/50 dark:text-zinc-500">Year Work Was Created</dt>
           <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details.year}</dd>
         </div>
         <div className="sm:col-span-1">
-          <dt className="text-sm font-medium text-zinc-500">Location of Origin</dt>
+          <dt className="text-sm font-medium text-zinc-700/50 dark:text-zinc-500">Location of Origin</dt>
           <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details.locationOfOrigin}</dd>
         </div>
         <div className="sm:col-span-1">
-          <dt className="text-sm font-medium text-zinc-500">How It Was Acquired</dt>
+          <dt className="text-sm font-medium text-zinc-700/50 dark:text-zinc-500">How It Was Acquired</dt>
           <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details.acquisitionMethod}</dd>
         </div>
         <div className="sm:col-span-1">
-          <dt className="text-sm font-medium text-zinc-500">Size</dt>
+          <dt className="text-sm font-medium text-zinc-700/50 dark:text-zinc-500">Size</dt>
           <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details.size}</dd>
         </div>
         <div className="sm:col-span-1">
-          <dt className="text-sm font-medium text-zinc-500">Medium</dt>
+          <dt className="text-sm font-medium text-zinc-700/50 dark:text-zinc-500">Medium</dt>
           <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details.medium}</dd>
+        </div>
+      </dl>
+    </div>
+  )
+
+  if (modalData.category === "cool-rock") return (
+    <div className="bg-zinc-100 dark:bg-zinc-900 p-4 mt-4 rounded-lg">
+      <dl className="grid grid-cols-2 gap-x-4 gap-y-4 sm:grid-cols-2">
+        <div className="sm:col-span-1">
+          <dt className="text-sm font-medium text-zinc-700/50 dark:text-zinc-500">Age</dt>
+          <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details.age}</dd>
+        </div>
+        <div className="sm:col-span-1">
+          <dt className="text-sm font-medium text-zinc-700/50 dark:text-zinc-500">Time Period</dt>
+          <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details.timePeriod}</dd>
+        </div>
+        <div className="sm:col-span-1">
+          <dt className="text-sm font-medium text-zinc-700/50 dark:text-zinc-500">Location of Origin</dt>
+          <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details.locationOfOrigin}</dd>
+        </div>
+        <div className="sm:col-span-1">
+          <dt className="text-sm font-medium text-zinc-700/50 dark:text-zinc-500">How It Was Acquired</dt>
+          <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details.acquisitionMethod}</dd>
+        </div>
+        <div className="sm:col-span-1">
+          <dt className="text-sm font-medium text-zinc-700/50 dark:text-zinc-500">Size</dt>
+          <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details.size}</dd>
+        </div>
+        <div className="sm:col-span-1">
+          <dt className="text-sm font-medium text-zinc-700/50 dark:text-zinc-500">Material</dt>
+          <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details.material}</dd>
+        </div>
+      </dl>
+    </div>
+  )
+
+  if (modalData.category === "fossil") return (
+    <div className="bg-zinc-100 dark:bg-zinc-900 p-4 mt-4 rounded-lg">
+      <dl className="grid grid-cols-2 gap-x-4 gap-y-4 sm:grid-cols-2">
+        { existingCheck(modalData.details.species) === true &&
+          (
+            <div className="sm:col-span-1">
+              <dt className="text-sm font-medium text-zinc-700/50 dark:text-zinc-500">Species</dt>
+              <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details.species}</dd>
+            </div>
+          )
+        }
+        <div className="sm:col-span-1">
+          <dt className="text-sm font-medium text-zinc-700/50 dark:text-zinc-500">Age</dt>
+          <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details.age}</dd>
+        </div>
+        <div className="sm:col-span-1">
+          <dt className="text-sm font-medium text-zinc-700/50 dark:text-zinc-500">Time Period</dt>
+          <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details.timePeriod}</dd>
+        </div>
+        <div className="sm:col-span-1">
+          <dt className="text-sm font-medium text-zinc-700/50 dark:text-zinc-500">Location of Origin</dt>
+          <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details.locationOfOrigin}</dd>
+        </div>
+        <div className="sm:col-span-1">
+          <dt className="text-sm font-medium text-zinc-700/50 dark:text-zinc-500">How It Was Acquired</dt>
+          <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details.acquisitionMethod}</dd>
+        </div>
+        <div className="sm:col-span-1">
+          <dt className="text-sm font-medium text-zinc-700/50 dark:text-zinc-500">Size</dt>
+          <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details.size}</dd>
+        </div>
+        <div className="sm:col-span-1">
+          <dt className="text-sm font-medium text-zinc-700/50 dark:text-zinc-500">Material</dt>
+          <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details.material}</dd>
         </div>
       </dl>
     </div>
@@ -162,11 +162,11 @@ function ItemDetailsBrick({ modalData }: { modalData: MuseumItem }) {
     <div className="bg-zinc-100 dark:bg-zinc-900 p-4 mt-4 rounded-lg">
       <dl className="grid grid-cols-2 gap-x-4 gap-y-4 sm:grid-cols-2">
         <div className="sm:col-span-1">
-          <dt className="text-sm font-medium text-zinc-500">Project Operating Period</dt>
+          <dt className="text-sm font-medium text-zinc-700/50 dark:text-zinc-500">Project Operating Period</dt>
           <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details.year}</dd>
         </div>
         <div className="sm:col-span-1">
-          <dt className="text-sm font-medium text-zinc-500">Status</dt>
+          <dt className="text-sm font-medium text-zinc-700/50 dark:text-zinc-500">Status</dt>
           <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details.status}</dd>
         </div>
       </dl>
@@ -177,7 +177,7 @@ function ItemDetailsBrick({ modalData }: { modalData: MuseumItem }) {
     <div className="bg-zinc-100 dark:bg-zinc-900 p-4 mt-4 rounded-lg">
       <dl className="grid grid-cols-2 gap-x-4 gap-y-4 sm:grid-cols-2">
         <div className="sm:col-span-1">
-          <dt className="text-sm font-medium text-zinc-500">Year</dt>
+          <dt className="text-sm font-medium text-zinc-700/50 dark:text-zinc-500">Year</dt>
           <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details.year}</dd>
         </div>
       </dl>
@@ -188,8 +188,16 @@ function ItemDetailsBrick({ modalData }: { modalData: MuseumItem }) {
     <div className="bg-zinc-100 dark:bg-zinc-900 p-4 mt-4 rounded-lg">
       <dl className="grid grid-cols-2 gap-x-4 gap-y-4 sm:grid-cols-2">
         <div className="sm:col-span-1">
-          <dt className="text-sm font-medium text-zinc-500">Relation</dt>
+          <dt className="text-sm font-medium text-zinc-700/50 dark:text-zinc-500">Relation</dt>
           <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details.relation}</dd>
+        </div>
+        <div className="sm:col-span-1">
+          <dt className="text-sm font-medium text-zinc-700/50 dark:text-zinc-500">Nickname</dt>
+          <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details.nickname}</dd>
+        </div>
+        <div className="sm:col-span-1">
+          <dt className="text-sm font-medium text-zinc-700/50 dark:text-zinc-500">Status</dt>
+          <dd className="text-sm text-zinc-900 dark:text-zinc-300">{modalData.details.status}</dd>
         </div>
       </dl>
     </div>

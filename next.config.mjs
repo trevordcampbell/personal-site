@@ -6,7 +6,7 @@ import rehypePrism from '@mapbox/rehype-prism'
 const nextConfig = {
   pageExtensions: ['tsx', 'jsx', 'mdx'],
   images: {
-    domains: ['trevordcampbell.imgix.net', 'cdn.rareblocks.xyz', 'tailwindui.com', 'media3.giphy.com', 'images.unsplash.com'],
+    domains: ['trevordcampbell.imgix.net', 'bocjuqvfcwuboyczrjwj.supabase.co', 'placehold.co', 'cdn.rareblocks.xyz', 'tailwindui.com', 'media3.giphy.com', 'images.unsplash.com'],
   },
   reactStrictMode: true,
   experimental: {

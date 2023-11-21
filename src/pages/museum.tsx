@@ -9,11 +9,14 @@ import { SectionTitle } from '@/components/SectionTitle'
 import DetailsModalTesting2 from '@/components/museum/DetailsModal2'
 import { stringToSlug } from '@/lib/stringToSlug'
 
+type ItemID = string;
+type Category = 'artifact' | 'artwork' | 'cool-rock' | 'fossil' | 'personal-life' | 'person' | 'project' ;
+
 interface MuseumItemBase {
   id: number;
   createdAt: Date;
-  itemID: string;
-  category: string;
+  itemID: ItemID;
+  category: Category;
   title: string;
   description: string;
   images: string[];
@@ -22,34 +25,8 @@ interface MuseumItemBase {
   display: boolean;
 }
 
-interface MuseumItemFossil extends MuseumItemBase {
-  category: 'fossil';
-  details: {
-    species?: string;
-    age?: string;
-    timePeriod?: string;
-    locationOfOrigin?: string;
-    acquisitionMethod?: string;
-    size?: string;
-    material?: string;
-    other?: string;
-  }
-}
-
 interface MuseumItemArtifact extends MuseumItemBase {
   category: 'artifact';
-  details: {
-    age?: string;
-    timePeriod?: string;
-    locationOfOrigin?: string;
-    acquisitionMethod?: string;
-    size?: string;
-    material?: string;
-  }
-}
-
-interface MuseumItemCoolRock extends MuseumItemBase {
-  category: 'cool-rock';
   details: {
     age?: string;
     timePeriod?: string;
@@ -72,11 +49,29 @@ interface MuseumItemArtwork extends MuseumItemBase {
   }
 }
 
-interface MuseumItemProject extends MuseumItemBase {
-  category: 'project';
+interface MuseumItemCoolRock extends MuseumItemBase {
+  category: 'cool-rock';
   details: {
-    year?: string;
-    status?: string;
+    age?: string;
+    timePeriod?: string;
+    locationOfOrigin?: string;
+    acquisitionMethod?: string;
+    size?: string;
+    material?: string;
+  }
+}
+
+interface MuseumItemFossil extends MuseumItemBase {
+  category: 'fossil';
+  details: {
+    species?: string;
+    age?: string;
+    timePeriod?: string;
+    locationOfOrigin?: string;
+    acquisitionMethod?: string;
+    size?: string;
+    material?: string;
+    other?: string;
   }
 }
 
@@ -90,8 +85,18 @@ interface MuseumItemPersonalLife extends MuseumItemBase {
 interface MuseumItemPerson extends MuseumItemBase {
   category: 'person';
   details: {
-    year?: string;
+    nickname?: string;
     relation?: string;
+    status?: string;
+
+  }
+}
+
+interface MuseumItemProject extends MuseumItemBase {
+  category: 'project';
+  details: {
+    year?: string;
+    status?: string;
   }
 }
 
@@ -104,66 +109,119 @@ export type MuseumItem =
   | MuseumItemPersonalLife
   | MuseumItemPerson;
 
+  // async function testFileRetrieval() {
+  //   const category = 'fossil'; // Use your actual category
+  //   const itemID = 'amber-001'; // Use your actual itemID
+  //   const path = `${category}/${itemID}`;
+  
+  //   let { data: images, error: imagesError } = await supabase
+  //     .storage
+  //     .from('museum-content')
+  //     .list(`${path}/images`, { limit: 10, offset: 0 });
+  
+  //   console.log('Test Data:', images);
+  //   console.log('Test Error:', imagesError);
+  
+  //   // Filter out the placeholder file
+  //   const actualImages = images.filter(file => !file.name.includes('.emptyFolderPlaceholder'));
+  
+  //   // Test the getPublicUrl method for the first actual image (if exists)
+  //   if (actualImages.length > 0) {
+  //     const firstImage = actualImages[0];
+  //     const { publicUrl } = supabase
+  //       .storage
+  //       .from('museum-content')
+  //       .getPublicUrl(`${path}/images/${firstImage.name}`).data;
+      
+  //     console.log('Public URL for first actual image:', publicUrl);
+  //   } else {
+  //     console.log('No actual images found to test getPublicUrl');
+  //   }
+  // }
+  
+  // testFileRetrieval();
+
+// Function to load media files for a given item
+async function loadMediaFiles(itemID: ItemID, category: Category) {
+  const path = `${category}/${itemID}`;
+
+  let { data: images } = await supabase
+    .storage
+    .from('museum-content')
+    .list(`${path}/images`, { limit: 100, offset: 0 });
+
+  let { data: videos } = await supabase
+    .storage
+    .from('museum-content')
+    .list(`${path}/videos`, { limit: 100, offset: 0 });
+
+  let { data: models } = await supabase
+    .storage
+    .from('museum-content')
+    .list(`${path}/models`, { limit: 100, offset: 0 });
+
+  // Sort images by the number suffix in their filenames
+  const sortedImages = images
+    ? images
+      .filter(file => !file.name.includes('.emptyFolderPlaceholder') && file.name.match(/\.(jpg|jpeg|png|heic)$/))
+      .sort((a, b) => {
+        const numberA = parseInt(a.name?.split('-').pop()?.split('.')[0] ?? '0');
+        const numberB = parseInt(b.name?.split('-').pop()?.split('.')[0] ?? '0');
+        return numberA - numberB;
+      })
+      .map(file => {
+        const { publicUrl } = supabase
+          .storage
+          .from('museum-content')
+          .getPublicUrl(`${path}/images/${file.name}`).data;
+        return publicUrl;
+      })
+    : [];
+
+    if (sortedImages.length === 0) {
+      sortedImages.push('https://placehold.co/600x400?text=Images++Pending'); // Replace with your actual placeholder image URL
+    }
+
+  // Process videos and models similarly, without sorting
+  const videoUrls = videos ? videos
+    .filter(file => !file.name.includes('.emptyFolderPlaceholder') && file.name.match(/\.(mp4|avi|mov)$/))
+    .map(file => {
+      const { publicUrl } = supabase
+        .storage
+        .from('museum-content')
+        .getPublicUrl(`${path}/videos/${file.name}`).data;
+      return publicUrl;
+    }) : [];
+
+  const modelUrls = models ? models
+    .filter(file => !file.name.includes('.emptyFolderPlaceholder') && file.name.match(/\.(obj|fbx)$/))
+    .map(file => {
+      const { publicUrl } = supabase
+        .storage
+        .from('museum-content')
+        .getPublicUrl(`${path}/models/${file.name}`).data;
+      return publicUrl;
+    }) : [];
+
+  return {
+    images: sortedImages,
+    videos: videoUrls,
+    threeD_models: modelUrls
+  };
+}
+  
+
 export async function getStaticProps() {
   try {
-    const [fossils] = await Promise.all([
-      supabase.from('museum-items').select(
-        `
-          *,
-          details:museum-fossils(*)
-        `).match({category: 'fossil', display: true}).order('id'),
-    ]);
-    const [artifacts] = await Promise.all([
-      supabase.from('museum-items').select(
-        `
-          *,
-          details:museum-artifacts(*)
-        `).match({category: 'artifact', display: true}).order('id'),
-
-    ]);
-    const [coolRocks] = await Promise.all([
-      supabase.from('museum-items').select(
-        `
-          *,
-          details:museum-cool-rocks(*)
-        `).match({category: 'cool-rock', display: true}).order('id'),
-
-    ]);
-    const [artwork] = await Promise.all([
-      supabase.from('museum-items').select(
-        `
-          *,
-          details:museum-artwork(*)
-        `).match({category: 'artwork', display: true}).order('id'),
-
-    ]);
-    const [projects] = await Promise.all([
-      supabase.from('museum-items').select(
-        `
-          *,
-          details:museum-projects(*)
-        `).match({category: 'project', display: true}).order('id'),
-
-    ]);
-    const [personalLife] = await Promise.all([
-      supabase.from('museum-items').select(
-        `
-          *,
-          details:museum-personal-life(*)
-        `).match({category: 'pesonal-life', display: true}).order('id'),
-
-    ]);
-    const [people] = await Promise.all([
-      supabase.from('museum-items').select(
-        `
-          *,
-          details:museum-people(*)
-        `).match({category: 'person', display: true}).order('id'),
-
-    ]);
-
-    // console.log(fossils.data);
-    // console.log(JSON.stringify(fossils.data, null, 2));
+    const [fossils, artifacts, coolRocks, artwork, projects, personalLife, people] = await Promise.all([
+      supabase.from('museum-items').select(`*, details:museum-fossils(*)`).match({category: 'fossil', display: true}).order('id'),
+      supabase.from('museum-items').select(`*, details:museum-artifacts(*)`).match({category: 'artifact', display: true}).order('id'),
+      supabase.from('museum-items').select(`*, details:museum-cool-rocks(*)`).match({category: 'cool-rock', display: true}).order('id'),
+      supabase.from('museum-items').select(`*, details:museum-artwork(*)`).match({category: 'artwork', display: true}).order('id'),
+      supabase.from('museum-items').select(`*, details:museum-projects(*)`).match({category: 'project', display: true}).order('id'),
+      supabase.from('museum-items').select(`*, details:museum-personal-life(*)`).match({category: 'personal-life', display: true}).order('id'),
+      supabase.from('museum-items').select(`*, details:museum-people(*)`).match({category: 'person', display: true}).order('id'),
+    ]) as any;
 
     const museumItems = [
       ...(fossils.data ?? []),
@@ -175,11 +233,16 @@ export async function getStaticProps() {
       ...(people.data ?? []),
     ];
 
-    console.log(museumItems)
+    const museumItemsWithMedia = await Promise.all(museumItems.map(async (item) => {
+      const mediaFiles = await loadMediaFiles(item.itemID, item.category);
+      return { ...item, ...mediaFiles };
+    }));
+
+    console.log(museumItemsWithMedia)
 
     return {
       props: {
-        museumItems,
+        museumItems: museumItemsWithMedia,
       },
       revalidate: 600,
     };
@@ -189,10 +252,10 @@ export async function getStaticProps() {
       props: {
         museumItems: [],
       },
-      revalidate: 600,
     };
   }
 }
+  
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
@@ -200,7 +263,7 @@ function classNames(...classes: string[]) {
 
 function BlurImage({ museumItem, setOpen, setModalData }: { museumItem: MuseumItem, setOpen: any, setModalData: any, modalData: MuseumItem, open: boolean }) {
   const [isLoading, setLoading] = useState(true);
-  const featureImage = museumItem.images[0]+'?auto=format';
+  const featureImage = museumItem.images[0];
 
   const urlSlug = stringToSlug(museumItem.title);
 
@@ -289,7 +352,7 @@ function BlurImage({ museumItem, setOpen, setModalData }: { museumItem: MuseumIt
           )}
           onLoadingComplete={() => setLoading(false)}
         />
-        <div className='absolute bottom-0 px-2 pb-2 pt-8 w-full text-zinc-300 font-medium opacity-0 group-hover:opacity-100 bg-gradient-to-b from-transparent to-zinc-900'>
+        <div className='absolute bottom-0 px-2 pb-2 pt-8 w-full text-zinc-300 font-medium opacity-0 group-hover:opacity-100 bg-gradient-to-b from-transparent to-zinc-900 line-clamp-3'>
           {museumItem.description}
         </div>
       </div>
