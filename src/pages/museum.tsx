@@ -155,6 +155,8 @@ async function loadMediaFiles(itemID: ItemID, category: Category) {
     .from('museum-content')
     .list(`${path}/videos`, { limit: 100, offset: 0 });
 
+    console.log(videos)
+
   let { data: models } = await supabase
     .storage
     .from('museum-content')
@@ -184,7 +186,7 @@ async function loadMediaFiles(itemID: ItemID, category: Category) {
 
   // Process videos and models similarly, without sorting
   const videoUrls = videos ? videos
-    .filter(file => !file.name.includes('.emptyFolderPlaceholder') && file.name.match(/\.(mp4|avi|mov)$/))
+    .filter(file => !file.name.includes('.emptyFolderPlaceholder') && file.name.match(/\.(mp4|avi|mov|MOV)$/))
     .map(file => {
       const { publicUrl } = supabase
         .storage

@@ -4,6 +4,7 @@ import { Dialog, Transition, RadioGroup } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 
 import { MuseumItem } from '@/pages/museum'
+import VideoThumbnail from './VideoThumbnail'
 
 import React, { Suspense } from 'react';
 // TODO: Make Image Selector into a multi-content selector able to handle images + videos + 3D Models. See Link: https://github.com/splinetool/react-spline
@@ -209,11 +210,42 @@ function ItemDetailsBrick({ modalData }: { modalData: MuseumItem }) {
   )
 }
 
-export default function DetailsModalTesting2({ modalData, open, closeModal }: { modalData: MuseumItem, open: boolean, closeModal: any}) {
+export default function DetailsModalTesting2({ modalData, open, closeModal }: { modalData: MuseumItem, open: boolean, closeModal: any }) {
+  
+  const [selectedMedia, setSelectedMedia] = useState({
+    url: modalData.images[0] || (modalData.videos && modalData.videos[0]),
+    type: modalData.images.length > 0 ? 'image' : 'video'
+  });
+  const [isLoading, setLoading] = useState(true);
 
-  const [selectedImage, setSelectedImage] = useState(modalData.images[0])
+  const allMedia = [
+    ...modalData.images.map(url => ({ url, type: 'image' })),
+    ...(modalData.videos || []).map(url => ({ url, type: 'video' })),
+  ];
 
-  const [isLoading, setLoading] = useState(true)
+  const MediaDisplay = () => {
+    if (selectedMedia.type === 'image') {
+      return (
+        <Image
+          alt=''
+          src={selectedMedia.url || 'https://placehold.co/600x400?text=No++Images++Available'}
+          width="0"
+          height="0"
+          sizes="100vw"
+          loading='lazy'
+          className={classNames('object-contain w-full h-full', isLoading ? 'blur-2xl grayscale' : 'blur-0 grayscale-0')}
+          onLoadingComplete={() => setLoading(false)}
+        />
+      );
+    } else if (selectedMedia.type === 'video') {
+      return (
+        <video src={selectedMedia.url} preload="metadata" controls autoPlay className='w-full h-full' />
+      );
+    }
+
+    // Default return if the type is neither 'image' nor 'video'
+    return <div>No media available</div>;
+  };
 
   return (
     <Transition.Root show={open} as={Fragment}>
@@ -232,7 +264,6 @@ export default function DetailsModalTesting2({ modalData, open, closeModal }: { 
 
         <div className="fixed inset-0 z-10 overflow-y-auto">
           <div className="flex min-h-full items-stretch justify-center text-center md:items-center md:px-2 lg:px-4">
-            {/* This element is to trick the browser into centering the modal contents. */}
             <span className="hidden md:inline-block md:h-screen md:align-middle" aria-hidden="true">
               &#8203;
             </span>
@@ -251,54 +282,28 @@ export default function DetailsModalTesting2({ modalData, open, closeModal }: { 
                     type="button"
                     className="absolute top-4 right-4 text-gray-400 hover:text-gray-500 sm:top-8 sm:right-6 md:top-6 md:right-6 lg:top-8 lg:right-8"
                     onClick={closeModal}
-                    >
+                  >
                     <span className="sr-only">Close</span>
                     <XMarkIcon className="h-6 w-6" aria-hidden="true" />
                   </button>
 
                   <div className="grid w-full grid-cols-1 items-start gap-y-8 gap-x-6 sm:grid-cols-12 lg:gap-x-8">
-                    
                     <div className="sm:col-span-4 lg:col-span-5">
-                      <h2 className="block sm:hidden text-2xl font-bold text-gray-900 dark:text-zinc-100 mb-4 pr-6">{modalData.title}</h2>
-                      <div className="relative aspect-w-1 aspect-h-1 overflow-hidden rounded-md bg-gray-100 dark:bg-gray-800">
-                        <Image
-                          alt=''
-                          src={selectedImage}
-                          // width="0"
-                          // height="0"
-                          // sizes="100vw"
-                          // layout='fill'
-                          // objectFit='contain'
-                          // layout="fill"
-                          // objectFit="cover"
-                          width="0"
-                          height="0"
-                          sizes="100vw"
-                          loading='lazy'
-                          className={classNames(
-                            'object-contain w-full h-full',
-                            isLoading
-                              ? 'blur-2xl grayscale'
-                              : 'blur-0 grayscale-0'
-                          )}
-                          onLoadingComplete={() => setLoading(false)}
-                        />
-                      </div>
-                      {/* <div>
-                        <Suspense fallback={<div className='text-black text-lg'>Loading...</div>}>
-                          <Spline scene="https://prod.spline.design/T2t1Or6zZBdbOhhZ/scene.splinecode" />
-                        </Suspense>
-                      </div> */}
+                      <MediaDisplay />
                       <div className="mt-2">
-                        <RadioGroup value={selectedImage} onChange={setSelectedImage} className="mt-6">
-                          <RadioGroup.Label className="sr-only"> Choose an Image </RadioGroup.Label>
+                        <RadioGroup value={selectedMedia.url} onChange={(url) => {
+                          const mediaType = allMedia.find(media => media.url === url)?.type;
+                          setSelectedMedia({ url, type: mediaType || 'image' });
+                        }}>
+                          <RadioGroup.Label className="sr-only"> Choose a media </RadioGroup.Label>
                           <div className="grid grid-cols-3 gap-4">
-                            {modalData.images.map((image) => (
+                            {allMedia.map((media) => (
                               <RadioGroup.Option
-                                key={image}
-                                value={image}
+                                key={media.url}
+                                value={media.url}
                                 className={({ active, checked }) =>
-                                  classNames('group cursor-pointer focus:outline-none',
+                                  classNames(
+                                    'group cursor-pointer focus:outline-none',
                                     active ? 'ring-4 ring-offset-4 dark:ring-offset-zinc-950 ring-teal-600' : '',
                                     checked
                                       ? 'text-white dark:text-zinc-800 ring-4 ring-offset-4 dark:ring-offset-zinc-950 ring-teal-600 hover:bg-teal-600'
@@ -308,28 +313,22 @@ export default function DetailsModalTesting2({ modalData, open, closeModal }: { 
                                 }
                               >
                                 <div className="relative aspect-w-1 aspect-h-1 overflow-hidden rounded-md">
-                                  <Image
-                                    alt=''
-                                    src={image}
-                                    // width="0"
-                                    // height="0"
-                                    // sizes="100vw"
-                                    // layout='fill'
-                                    // objectFit='contain'
-                                    // layout="fill"
-                                    // objectFit="cover"
-                                    width="0"
-                                    height="0"
-                                    sizes="100vw"
-                                    loading='lazy'
-                                    className={classNames(
-                                      'object-contain w-full h-full group-hover:opacity-70',
-                                      isLoading
-                                        ? 'blur-2xl grayscale'
-                                        : 'blur-0 grayscale-0'
-                                    )}
-                                    onLoadingComplete={() => setLoading(false)}
-                                  />
+                                  {media.type === 'image' ? (
+                                    <Image
+                                      alt=''
+                                      src={media.url}
+                                      width="0"
+                                      height="0"
+                                      sizes="100vw"
+                                      loading='lazy'
+                                      className='object-contain w-full h-full group-hover:opacity-70'
+                                    />
+                                    ) : media.type === 'video' ? (
+                                      <VideoThumbnail videoUrl={media.url} />
+                                    ) : (
+                                      <div>media</div>
+                                    )
+                                  }
                                 </div>
                               </RadioGroup.Option>
                             ))}
@@ -378,5 +377,5 @@ export default function DetailsModalTesting2({ modalData, open, closeModal }: { 
         </div>
       </Dialog>
     </Transition.Root>
-  )
+  );
 }
